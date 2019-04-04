@@ -63,8 +63,8 @@ function initReport() {
             bottom: [255, 255, 255]
         }
     }
-    let report = new OCRVReport(reportConfig);
+    let report = new OCRVreport(reportConfig);
     report.init();
 }
-function waitReport() { if (OCRVreport) { initReport(); } else { setTimeout(function () { waitReport(); }, 1000); } }
+function waitReport() { if (typeof OCRVreport !== 'undefined') { initReport(); } else { setTimeout(function () { waitReport(); }, 1000); } }
 waitReport();
