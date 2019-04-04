@@ -118,7 +118,7 @@ class OCRVreport {
         for (let r = 0; r < result.rows.length; r++) {
             let row = result.rows[r];
             parents[parseInt(row.members[0]['LNum'])] = r;
-            this.html.body += '<tr id="ocrv-row-' + r + '" ';
+            this.html.body += '<tr data-ocrv-id="ocrv-row-' + r + '" ';
             if (r > 0) {
                 this.html.body += 'data-ocrv-parent="ocrv-row-' + parents[parseInt(row.members[0]['LNum']) - 1] + '" ';
             }
@@ -162,9 +162,9 @@ class OCRVreport {
     }
     applyTable() {
         $('#' + this.id + '-ocrv-report-container').html(this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>');
-        /*
+        
         $('.ocrv-row-click').click(function (e) {
-            let id = $(e.currentTarget).attr('id');
+            let id = $(e.currentTarget).attr('data-ocrv-id');
             if ($(e.currentTarget).hasClass('ocrv-row-hide-children')) {
                 $('#ocrv-report-container .ocrv-report-table *[data-ocrv-parent="' + id + '"]').each(function (i, tr) {
                     $(tr).removeClass('ocrv-row-hide-self');
@@ -192,7 +192,7 @@ class OCRVreport {
                 $(e.currentTarget).removeClass('ocrv-unroll')
             }
         });
-        */
+        
     }
     temple(t, d) {
         let r = /<%([^%>]+)?%>/, m;
