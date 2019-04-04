@@ -71,9 +71,12 @@ class OCRVreport {
         this.widget.setLoading(false);
     }
     run() {
+        this.source.model.query.update(true);
+        /*
         this.source.model.query.autoUpdate = true;
         this.source.reload();
         this.source.model.query.autoUpdate = false;
+        */
     }
     drawBlank() {
         let html = '<br /><br /><div><button id="' + this.id + '-ocrv-report-export">Экспорт</button><button id="' + this.id + '-ocrv-report-run">Сформировать</button></div>';
