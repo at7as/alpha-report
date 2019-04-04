@@ -47,7 +47,7 @@ class OCRVreport {
         this.beforeUpdate = this.beforeUpdate.bind(this);
         this.export = this.export.bind(this);
         this.cancel = this.cancel.bind(this);
-        this.drawBlank = this.drawBlank.bind(this);
+        this.run = this.run.bind(this);
     }
     init() {
         this.source = this.widget.getDataSource(this.sourceName);
@@ -70,8 +70,14 @@ class OCRVreport {
     cancel() {
         this.widget.setLoading(false);
     }
+    run() {
+        this.source.model.query.autoUpdate = true;
+        this.source.reload();
+        this.source.model.query.autoUpdate = false;
+    }
     drawBlank() {
-        let html = '<br />';
+        let html = '<div><button id="' + this.id + '-ocrv-report-export">Экспорт</button><button id="' + this.id + '-ocrv-report-run">Сформировать</button></div>';
+        html += '<br />';
         html += '<div id="' + this.id + '-ocrv-report-header" class="ocrv-report-header">';
         html += '<span class="ocrv-h1">' + this.h1 + '</span>';
         if (this.h2) html += '<br /><br /><span class="ocrv-h2">' + this.h2 + '</span>';
@@ -84,7 +90,8 @@ class OCRVreport {
         }
         html += '</div>';
         this.widget.setWidgetHtml(html);
-        //$('#ocrv-report-export').click(this.export);
+        document.getElementById(this.id + '-ocrv-report-export').onclick = this.export;
+        document.getElementById(this.id + '-ocrv-report-run').onclick = this.run;
     }
     drawHead() {
         let vars = {};
@@ -157,7 +164,8 @@ class OCRVreport {
         this.html.style += '</style>';
     }
     applyTable() {
-        $('#' + this.id).html(this.html.style + '<table id="ocrv-report-table" class="ocrv-report-table">' + this.html.head + this.html.body + '</table>');
+        $('#' + this.id+'-ocrv-report-container').html(this.html.style + '<table id="ocrv-report-table" class="ocrv-report-table">' + this.html.head + this.html.body + '</table>');
+        /*
         $('.ocrv-row-click').click(function (e) {
             let id = $(e.currentTarget).attr('id');
             if ($(e.currentTarget).hasClass('ocrv-row-hide-children')) {
@@ -187,6 +195,7 @@ class OCRVreport {
                 $(e.currentTarget).removeClass('ocrv-unroll')
             }
         });
+        */
     }
     temple(t, d) {
         let r = /<%([^%>]+)?%>/, m;
@@ -209,6 +218,7 @@ class OCRVreport {
 
         xlsx.exportToExcel({ fileName: 'example-file' });
     }
+
 };
 
 /*
