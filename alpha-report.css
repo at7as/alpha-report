@@ -1,0 +1,76 @@
+#ocrv-report-header {
+    text-align: center;
+}
+
+#ocrv-report-footer {
+    font-size: 10px;
+}
+
+.ocrv-h1 {
+    font-size: 24px;
+}
+
+.ocrv-h2 {
+    font-size: 16px;
+}
+
+.ocrv-report-table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.ocrv-report-table * {
+    border: 1px #999 solid;
+}
+
+.ocrv-report-table thead * {
+    background: #ddd;
+}
+
+.ocrv-row-value {
+    text-align: right;
+}
+
+.ocrv-item-level-0 {
+    padding-left: 0px;
+}
+
+.ocrv-item-level-1 {
+    padding-left: 15px;
+}
+
+.ocrv-item-level-2 {
+    padding-left: 30px;
+}
+
+.ocrv-item-level-3 {
+    padding-left: 45px;
+}
+
+.ocrv-item-level-4 {
+    padding-left: 60px;
+}
+
+.ocrv-item-level-5 {
+    padding-left: 75px;
+}
+
+.ocrv-item-level-6 {
+    padding-left: 90px;
+}
+
+.ocrv-item-level-7 {
+    padding-left: 105px;
+}
+
+.ocrv-row-click {
+    cursor: pointer;
+}
+
+#ocrv-unroll {
+    cursor: pointer;
+}
+
+.ocrv-row-hide-self {
+    visibility: collapse;
+}

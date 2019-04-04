@@ -1,5 +1,5 @@
 
-class VarParser {
+class OCRVparser {
     constructor(config) {
         this.source = config.source;
     }
@@ -26,16 +26,19 @@ class VarParser {
     }
 };
 
-class OCRVReport {
+class OCRVreport {
     constructor(config) {
-        this.id = config.id;
         this.sourceName = config.sourceName;
         this.widget = config.widget;
+        this.id = config.widget.itemId;
         this.vars = config.vars;
         this.header = config.header;
+        this.footer = config.footer;
         this.values = config.values;
         this.numerable = config.numerable;
         this.colors = config.colors;
+        this.h1 = config.h1 || '';
+        this.h2 = config.h2;
         this.source = {};
         this.varParser = {};
         this.levels = 0;
@@ -43,17 +46,16 @@ class OCRVReport {
         this.update = this.update.bind(this);
         this.beforeUpdate = this.beforeUpdate.bind(this);
         this.export = this.export.bind(this);
-
+        this.cancel = this.cancel.bind(this);
+        this.drawBlank = this.drawBlank.bind(this);
     }
     init() {
-        this.setSource();
-        this.varParser = new VarParser({ source: this.source });
+        this.source = this.widget.getDataSource(this.sourceName);
+        this.varParser = new OCRVparser({ source: this.source });
         this.source.model.on('beforeload', this.beforeUpdate);
         this.source.on('dataloaded', this.update);
-        $('#ocrv-report-export').click(this.export);
-    }
-    setSource() {
-        this.source = this.widget.getDataSource(this.sourceName);
+        this.source.on('dataerror', this.cancel);
+        this.drawBlank();
     }
     beforeUpdate() {
         this.widget.setLoading(true);
@@ -64,6 +66,25 @@ class OCRVReport {
         this.drawStyle();
         this.applyTable();
         this.widget.setLoading(false);
+    }
+    cancel() {
+        this.widget.setLoading(false);
+    }
+    drawBlank() {
+        let html = '<br />';
+        html += '<div id="' + this.id + '-ocrv-report-header">';
+        html += '<span class="ocrv-h1">' + this.h1 + '</span>';
+        if (this.h2) html += '<br /><br /><span class="ocrv-h2"></span>';
+        html += '</div><br />';
+        //html += '<button id="ocrv-report-export">Экспорт в Excel</button>';
+        html += '<div id="' + this.id + 'ocrv-report-container"></div>';
+        html += '<div id="' + this.id + 'ocrv-report-footer">';
+        for (let r = 0; r < this.footer.length; r++) {
+            html += this.footer[r] + (r < this.footer.length - 1 ? '<br/>' : '');
+        }
+        html += '</div>';
+        this.widget.setWidgetHtml(html);
+        //$('#ocrv-report-export').click(this.export);
     }
     drawHead() {
         let vars = {};
@@ -189,3 +210,9 @@ class OCRVReport {
         xlsx.exportToExcel({ fileName: 'example-file' });
     }
 };
+
+/*
+изолировать
+всё в конфиг
+excel
+*/
