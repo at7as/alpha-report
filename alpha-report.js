@@ -161,7 +161,8 @@ class OCRVreport {
         this.html.style += '</style>';
     }
     applyTable() {
-        $('#' + this.id + '-ocrv-report-container').html(this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>');
+        document.getElementById('#' + this.id + '-ocrv-report-container').innerHTML = this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
+        //$('#' + this.id + '-ocrv-report-container').html(this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>');
         
         $('.ocrv-row-click').click(function (e) {
             let id = $(e.currentTarget).attr('data-ocrv-id');
