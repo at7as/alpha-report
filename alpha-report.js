@@ -72,20 +72,14 @@ class OCRVreport {
     }
     run() {
         this.source.model.query.update(true);
-        /*
-        this.source.model.query.autoUpdate = true;
-        this.source.reload();
-        this.source.model.query.autoUpdate = false;
-        */
     }
     drawBlank() {
-        let html = '<br /><br /><div><button id="' + this.id + '-ocrv-report-export">Экспорт</button><button id="' + this.id + '-ocrv-report-run">Сформировать</button></div>';
-        html += '<br />';
+        let html = '<br/><br/><div><button id="' + this.id + '-ocrv-report-export">Экспорт</button><button id="' + this.id + '-ocrv-report-run">Сформировать</button></div>';
+        html += '<br/>';
         html += '<div id="' + this.id + '-ocrv-report-header" class="ocrv-report-header">';
         html += '<span class="ocrv-h1">' + this.h1 + '</span>';
-        if (this.h2) html += '<br /><br /><span class="ocrv-h2">' + this.h2 + '</span>';
+        if (this.h2) html += '<br/><br/><span class="ocrv-h2">' + this.h2 + '</span>';
         html += '</div><br />';
-        //html += '<button id="ocrv-report-export">Экспорт в Excel</button>';
         html += '<div id="' + this.id + '-ocrv-report-container"></div>';
         html += '<div id="' + this.id + '-ocrv-report-footer" class="ocrv-report-footer">';
         for (let r = 0; r < this.footer.length; r++) {
@@ -108,7 +102,7 @@ class OCRVreport {
                     r: (el.hasOwnProperty('r') ? ' rowspan="' + el.r + '"' : ''),
                     c: (el.hasOwnProperty('c') ? ' colspan="' + el.c + '"' : ''),
                     n: this.temple(el.n, vars),
-                    u: (el.hasOwnProperty('u') ? ' id="ocrv-unroll"' : '')
+                    u: (el.hasOwnProperty('u') ? ' class="ocrv-unroll"' : '')
                 };
                 this.html.head += '<th' + elp.r + elp.c + elp.u + '>' + elp.n + '</th>'
             }
@@ -167,7 +161,7 @@ class OCRVreport {
         this.html.style += '</style>';
     }
     applyTable() {
-        $('#' + this.id+'-ocrv-report-container').html(this.html.style + '<table id="ocrv-report-table" class="ocrv-report-table">' + this.html.head + this.html.body + '</table>');
+        $('#' + this.id + '-ocrv-report-container').html(this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>');
         /*
         $('.ocrv-row-click').click(function (e) {
             let id = $(e.currentTarget).attr('id');
