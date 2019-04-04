@@ -72,13 +72,13 @@ class OCRVreport {
     }
     drawBlank() {
         let html = '<br />';
-        html += '<div id="' + this.id + '-ocrv-report-header">';
+        html += '<div id="' + this.id + '-ocrv-report-header" class="ocrv-report-header">';
         html += '<span class="ocrv-h1">' + this.h1 + '</span>';
         if (this.h2) html += '<br /><br /><span class="ocrv-h2">' + this.h2 + '</span>';
         html += '</div><br />';
         //html += '<button id="ocrv-report-export">Экспорт в Excel</button>';
-        html += '<div id="' + this.id + 'ocrv-report-container"></div>';
-        html += '<div id="' + this.id + 'ocrv-report-footer">';
+        html += '<div id="' + this.id + '-ocrv-report-container"></div>';
+        html += '<div id="' + this.id + '-ocrv-report-footer" class="ocrv-report-footer">';
         for (let r = 0; r < this.footer.length; r++) {
             html += this.footer[r] + (r < this.footer.length - 1 ? '<br/>' : '');
         }

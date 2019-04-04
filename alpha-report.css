@@ -1,8 +1,8 @@
-#ocrv-report-header {
+.ocrv-report-header {
     text-align: center;
 }
 
-#ocrv-report-footer {
+.ocrv-report-footer {
     font-size: 10px;
 }
 
