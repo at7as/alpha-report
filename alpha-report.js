@@ -220,9 +220,9 @@ class OCRVreport {
     unrollall() {
         if (this.levels > 1) {
             let rows = this.container.getElementsByClassName('ocrv-row-roll');
-            if (this.unrolled) {
-                for (let r = 0; r < rows.length; r++) {
-                    let row = rows[r];
+            for (let r = 0; r < rows.length; r++) {
+                let row = rows[r];
+                if (this.unrolled) {
                     if (row.classList.contains('ocrv-row-level-1')) {
                         if (row.classList.contains('ocrv-row-click')) row.classList.add('ocrv-row-hide-children');
                     } else {
@@ -232,23 +232,22 @@ class OCRVreport {
                             row.classList.add('ocrv-row-hide-self');
                         }
                     }
-                }
-                this.unrolled = false;
-            } else {
-                for (let r = 0; r < rows.length; r++) {
-                    let row = rows[r];
-                    if (row.classList.contains('ocrv-row-level-1')) {
-                        if (row.classList.contains('ocrv-row-click')) row.classList.remove('ocrv-row-hide-children');
-                    } else {
-                        if (row.classList.contains('ocrv-row-click')) {
-                            row.classList.remove('ocrv-row-hide-children', 'ocrv-row-hide-self');
+                } else {
+                    for (let r = 0; r < rows.length; r++) {
+                        let row = rows[r];
+                        if (row.classList.contains('ocrv-row-level-1')) {
+                            if (row.classList.contains('ocrv-row-click')) row.classList.remove('ocrv-row-hide-children');
                         } else {
-                            row.classList.remove('ocrv-row-hide-self');
+                            if (row.classList.contains('ocrv-row-click')) {
+                                row.classList.remove('ocrv-row-hide-children', 'ocrv-row-hide-self');
+                            } else {
+                                row.classList.remove('ocrv-row-hide-self');
+                            }
                         }
                     }
                 }
-                this.unrolled = true;
             }
+            this.unrolled = !this.unrolled;
         }
     }
     temple(t, d) {
