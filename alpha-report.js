@@ -200,7 +200,6 @@ class OCRVreport {
     }
     unrollall() {
         if (this.levels > 1) {
-            this.beforeUpdate();
             let rows = this.container.getElementsByClassName('ocrv-row-roll');
             for (let r = 0; r < rows.length; r++) {
                 let row = rows[r];
@@ -227,7 +226,6 @@ class OCRVreport {
                 }
             }
             this.unrolled = !this.unrolled;
-            this.cancel();
         }
     }
     temple(t, d) {
