@@ -84,7 +84,7 @@ class OCRVreport {
         html += '<span class="ocrv-h1">' + this.h1 + '</span>';
         if (this.h2) html += '<span class="ocrv-h2">' + this.h2 + '</span>';
         html += '</div>';
-        html += '<div id="' + this.id + '-ocrv-report-container"></div>';
+        html += '<div id="' + this.id + '-ocrv-report-container" class="ocrv-report-container"></div>';
         html += '<div id="' + this.id + '-ocrv-report-footer" class="ocrv-report-footer">';
         for (let r = 0; r < this.footer.length; r++) {
             html += this.footer[r] + (r < this.footer.length - 1 ? '<br/>' : '');
