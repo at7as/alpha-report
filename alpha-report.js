@@ -79,12 +79,11 @@ class OCRVreport {
         this.source.model.query.update(true);
     }
     drawBlank() {
-        let html = '<br/><br/><div><button id="' + this.id + '-ocrv-report-export">Экспорт</button><button id="' + this.id + '-ocrv-report-run">Сформировать</button></div>';
-        html += '<br/>';
+        let html = '<div id="' + this.id + '-ocrv-report-control" class="ocrv-report-control"><button id="' + this.id + '-ocrv-report-export" disabled>Экспорт</button><button id="' + this.id + '-ocrv-report-run">Сформировать</button></div>';
         html += '<div id="' + this.id + '-ocrv-report-header" class="ocrv-report-header">';
         html += '<span class="ocrv-h1">' + this.h1 + '</span>';
-        if (this.h2) html += '<br/><br/><span class="ocrv-h2">' + this.h2 + '</span>';
-        html += '</div><br />';
+        if (this.h2) html += '<span class="ocrv-h2">' + this.h2 + '</span>';
+        html += '</div>';
         html += '<div id="' + this.id + '-ocrv-report-container"></div>';
         html += '<div id="' + this.id + '-ocrv-report-footer" class="ocrv-report-footer">';
         for (let r = 0; r < this.footer.length; r++) {
@@ -235,6 +234,7 @@ class OCRVreport {
         return t;
     }
     export() {
+        /*
         var xlsx = new BarsUp.xlsx.View();
         var sheet = xlsx.addSheet('Test sheet');
 
@@ -249,6 +249,7 @@ class OCRVreport {
         sheet.range('A6').setRangeProperty('formula', '=A4*A5');
 
         xlsx.exportToExcel({ fileName: 'example-file' });
+        */
     }
 
 };

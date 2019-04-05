@@ -1,3 +1,12 @@
+.ocrv-report-control {
+    background: rgb(240, 243, 250);
+}
+
+.ocrv-report-control button {
+    border: 1px solid;
+    border-radius: 0;
+}
+
 .ocrv-report-header {
     text-align: center;
 }
