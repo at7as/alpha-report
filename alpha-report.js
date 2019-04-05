@@ -215,7 +215,10 @@ $('.ocrv-row-click').click(function (e) {
             for (let r = 0; r < rows.length; r++) rows[r].classList.remove('ocrv-row-hide-self');
             t.classList.remove('ocrv-row-hide-children');
         } else {
-            for (let r = 0; r < rows.length; r++) rows[r].classList.add('ocrv-row-hide-self');
+            for (let r = 0; r < rows.length; r++) {
+                rows[r].classList.add('ocrv-row-hide-self');
+                if (rows[r].classList.contains('ocrv-row-click') && !rows[r].classList.contains('ocrv-row-hide-children')) rows[r].click();
+            }
             t.classList.add('ocrv-row-hide-children');
         }
 
