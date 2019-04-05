@@ -204,8 +204,9 @@ $('.ocrv-row-click').click(function (e) {
     }
     unroll(e) {
         let t = e.target;
-        if (t.tagName = 'TD') t = t.parentElement;
+        if (t.tagName == 'TD') t = t.parentElement;
 
+        console.log(t);
         /*
         let id = $(e.currentTarget).attr('data-ocrv-id');
         if ($(e.currentTarget).hasClass('ocrv-row-hide-children')) {
