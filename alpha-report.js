@@ -165,25 +165,23 @@ class OCRVreport {
         let container = document.getElementById(this.id + '-ocrv-report-container');
         container.innerHTML = this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
         let rows = container.getElementsByClassName('ocrv-row-click');
-        for (let r = 0; r < rows.length; r++) {
-            rows[r].onclick = this.unroll;
-        }
+        for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
         /*
-        $('.ocrv-row-click').click(function (e) {
-            let id = $(e.currentTarget).attr('data-ocrv-id');
-            if ($(e.currentTarget).hasClass('ocrv-row-hide-children')) {
-                $('#ocrv-report-container .ocrv-report-table *[data-ocrv-parent="' + id + '"]').each(function (i, tr) {
-                    $(tr).removeClass('ocrv-row-hide-self');
-                });
-                $(e.currentTarget).removeClass('ocrv-row-hide-children');
-            } else {
-                $('#ocrv-report-container .ocrv-report-table *[data-ocrv-parent="' + id + '"]').each(function (i, tr) {
-                    $(tr).addClass('ocrv-row-hide-self');
-                    if ($(tr).hasClass('ocrv-row-click') && !$(tr).hasClass('ocrv-row-hide-children')) $(tr).click();
-                });
-                $(e.currentTarget).addClass('ocrv-row-hide-children');
-            }
+$('.ocrv-row-click').click(function (e) {
+    let id = $(e.currentTarget).attr('data-ocrv-id');
+    if ($(e.currentTarget).hasClass('ocrv-row-hide-children')) {
+        $('#ocrv-report-container .ocrv-report-table *[data-ocrv-parent="' + id + '"]').each(function (i, tr) {
+            $(tr).removeClass('ocrv-row-hide-self');
         });
+        $(e.currentTarget).removeClass('ocrv-row-hide-children');
+    } else {
+        $('#ocrv-report-container .ocrv-report-table *[data-ocrv-parent="' + id + '"]').each(function (i, tr) {
+            $(tr).addClass('ocrv-row-hide-self');
+            if ($(tr).hasClass('ocrv-row-click') && !$(tr).hasClass('ocrv-row-hide-children')) $(tr).click();
+        });
+        $(e.currentTarget).addClass('ocrv-row-hide-children');
+    }
+});
 */
         /*
         $('.ocrv-row-level-1').each(function (i, tr) { $(tr).click(); });
@@ -208,7 +206,7 @@ class OCRVreport {
         return t;
     }
     unroll(e) {
-        console.log(e.target);
+        console.log(e);
 
     }
     export() {
