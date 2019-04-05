@@ -209,8 +209,16 @@ $('.ocrv-row-click').click(function (e) {
     unroll(e) {
         let t = e.target;
         if (t.tagName == 'TD') t = t.parentElement;
+        let id = t.getAttribute('data-ocrv-id');
+        let rows = container.querySelectorAll('tr[data-ocrv-parent="' + id + '"]');
+        if (t.classList.contains('ocrv-row-hide-children')) {
+            for (let r = 0; r < rows.length; r++) rows[r].classList.remove('ocrv-row-hide-self');
+            t.classList.remove('ocrv-row-hide-children');
+        } else {
+            for (let r = 0; r < rows.length; r++) rows[r].classList.add('ocrv-row-hide-self');
+            t.classList.add('ocrv-row-hide-children');
+        }
 
-        console.log(t);
         /*
         let id = $(e.currentTarget).attr('data-ocrv-id');
         if ($(e.currentTarget).hasClass('ocrv-row-hide-children')) {
