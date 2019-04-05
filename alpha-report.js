@@ -232,6 +232,7 @@ class OCRVreport {
                             row.classList.add('ocrv-row-hide-self');
                         }
                     }
+                    this.unrolled = false;
                 } else {
                     if (row.classList.contains('ocrv-row-level-1')) {
                         if (row.classList.contains('ocrv-row-click')) row.classList.remove('ocrv-row-hide-children');
@@ -242,6 +243,7 @@ class OCRVreport {
                             row.classList.remove('ocrv-row-hide-self');
                         }
                     }
+                    this.unrolled = true;
                 }
             }
         }
