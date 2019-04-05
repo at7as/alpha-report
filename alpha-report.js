@@ -44,12 +44,14 @@ class OCRVreport {
         this.levels = 0;
         this.html = { head: '', body: '', style: '' };
         this.container = {};
+        this.unrolled = true;
         this.update = this.update.bind(this);
         this.beforeUpdate = this.beforeUpdate.bind(this);
         this.export = this.export.bind(this);
         this.cancel = this.cancel.bind(this);
         this.run = this.run.bind(this);
         this.unroll = this.unroll.bind(this);
+        this.unrollall = this.unrollall.bind(this);
     }
     init() {
         this.source = this.widget.getDataSource(this.sourceName);
@@ -106,7 +108,7 @@ class OCRVreport {
                     r: (el.hasOwnProperty('r') ? ' rowspan="' + el.r + '"' : ''),
                     c: (el.hasOwnProperty('c') ? ' colspan="' + el.c + '"' : ''),
                     n: this.temple(el.n, vars),
-                    u: (el.hasOwnProperty('u') ? ' class="ocrv-unroll"' : '')
+                    u: (el.hasOwnProperty('u') ? ' id="' + this.id + '-ocrv-report-unroll" class="ocrv-report-unroll"' : '')
                 };
                 this.html.head += '<th' + elp.r + elp.c + elp.u + '>' + elp.n + '</th>'
             }
@@ -116,6 +118,7 @@ class OCRVreport {
     }
     drawBody() {
         this.levels = 0;
+        this.unrolled = true;
         let result = this.source.model.lastResult;
         let parents = [];
         this.html.body = '<tbody>';
@@ -127,9 +130,9 @@ class OCRVreport {
                 this.html.body += 'data-ocrv-parent="ocrv-row-' + parents[parseInt(row.members[0]['LNum']) - 1] + '" ';
             }
             if (r < result.rows.length - 1 && parseInt(result.rows[r + 1].members[0]['LNum']) > parseInt(row.members[0]['LNum'])) {
-                this.html.body += 'class="ocrv-row-level-' + row.members[0]['LNum'] + ' ocrv-row-click"';
+                this.html.body += 'class="ocrv-row-datalevel-' + row.members[0]['LNum'] + ' ocrv-row-level-' + row.members[0]['LNum'] + ' ocrv-row-click"';
             } else {
-                this.html.body += 'class="ocrv-row-level-bottom"';
+                this.html.body += 'class="ocrv-row-datalevel-' + row.members[0]['LNum'] + ' ocrv-row-level-bottom"';
             }
             this.html.body += '>';
             this.levels = Math.max(parseInt(row.members[0]['LNum']), this.levels);
@@ -172,23 +175,10 @@ class OCRVreport {
         this.container.innerHTML = this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
         let rows = this.container.getElementsByClassName('ocrv-row-click');
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
-        /*
-$('.ocrv-row-click').click(function (e) {
-    let id = $(e.currentTarget).attr('data-ocrv-id');
-    if ($(e.currentTarget).hasClass('ocrv-row-hide-children')) {
-        $('#ocrv-report-container .ocrv-report-table *[data-ocrv-parent="' + id + '"]').each(function (i, tr) {
-            $(tr).removeClass('ocrv-row-hide-self');
-        });
-        $(e.currentTarget).removeClass('ocrv-row-hide-children');
-    } else {
-        $('#ocrv-report-container .ocrv-report-table *[data-ocrv-parent="' + id + '"]').each(function (i, tr) {
-            $(tr).addClass('ocrv-row-hide-self');
-            if ($(tr).hasClass('ocrv-row-click') && !$(tr).hasClass('ocrv-row-hide-children')) $(tr).click();
-        });
-        $(e.currentTarget).addClass('ocrv-row-hide-children');
-    }
-});
-*/
+        this.container.getElementById(this.id + '-ocrv-report-unroll').onclick = this.unrollall;
+        this.unrollall();
+
+
         /*
         $('.ocrv-row-level-1').each(function (i, tr) { $(tr).click(); });
         $('#ocrv-unroll').click(function (e) {
@@ -221,23 +211,15 @@ $('.ocrv-row-click').click(function (e) {
             }
             t.classList.add('ocrv-row-hide-children');
         }
-
+    }
+    unrollall() {
+        console.log(this.levels);
         /*
-        let id = $(e.currentTarget).attr('data-ocrv-id');
-        if ($(e.currentTarget).hasClass('ocrv-row-hide-children')) {
-            $('#ocrv-report-container .ocrv-report-table *[data-ocrv-parent="' + id + '"]').each(function (i, tr) {
-                $(tr).removeClass('ocrv-row-hide-self');
-            });
-            $(e.currentTarget).removeClass('ocrv-row-hide-children');
-        } else {
-            $('#ocrv-report-container .ocrv-report-table *[data-ocrv-parent="' + id + '"]').each(function (i, tr) {
-                $(tr).addClass('ocrv-row-hide-self');
-                if ($(tr).hasClass('ocrv-row-click') && !$(tr).hasClass('ocrv-row-hide-children')) $(tr).click();
-            });
-            $(e.currentTarget).addClass('ocrv-row-hide-children');
-        }
-        */
-
+        if(this.levels > )
+        if(this.unrolled){
+            for(let )
+            let rows = this.container.getElementsByClassName('ocrv-row-datalevel-*');
+        }*/
     }
     temple(t, d) {
         let r = /<%([^%>]+)?%>/, m;
