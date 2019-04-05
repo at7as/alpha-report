@@ -48,6 +48,7 @@ class OCRVreport {
         this.export = this.export.bind(this);
         this.cancel = this.cancel.bind(this);
         this.run = this.run.bind(this);
+        this.unroll = this.unroll.bind(this);
     }
     init() {
         this.source = this.widget.getDataSource(this.sourceName);
@@ -162,8 +163,10 @@ class OCRVreport {
     }
     applyTable() {
         document.getElementById(this.id + '-ocrv-report-container').innerHTML = this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
-        //$('#' + this.id + '-ocrv-report-container').html(this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>');
-
+        let clicks = document.getElementsByClassName('ocrv-row-click');
+        clicks.forEach(function (e) {
+            e.onclick = this.unroll;
+        });
         $('.ocrv-row-click').click(function (e) {
             let id = $(e.currentTarget).attr('data-ocrv-id');
             if ($(e.currentTarget).hasClass('ocrv-row-hide-children')) {
@@ -179,6 +182,8 @@ class OCRVreport {
                 $(e.currentTarget).addClass('ocrv-row-hide-children');
             }
         });
+
+        /*
         $('.ocrv-row-level-1').each(function (i, tr) { $(tr).click(); });
         $('#ocrv-unroll').click(function (e) {
             if (!$(e.currentTarget).hasClass('ocrv-unroll')) {
@@ -193,12 +198,16 @@ class OCRVreport {
                 $(e.currentTarget).removeClass('ocrv-unroll')
             }
         });
-
+*/
     }
     temple(t, d) {
         let r = /<%([^%>]+)?%>/, m;
         while (m = r.exec(t)) t = t.replace(m[0], d[m[1]]);
         return t;
+    }
+    unroll(e) {
+        console.log(e);
+
     }
     export() {
         var xlsx = new BarsUp.xlsx.View();
