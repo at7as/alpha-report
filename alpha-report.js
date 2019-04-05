@@ -130,9 +130,13 @@ class OCRVreport {
                 this.html.body += 'data-ocrv-parent="ocrv-row-' + parents[parseInt(row.members[0]['LNum']) - 1] + '" ';
             }
             if (r < result.rows.length - 1 && parseInt(result.rows[r + 1].members[0]['LNum']) > parseInt(row.members[0]['LNum'])) {
-                this.html.body += 'class="ocrv-row-datalevel-' + row.members[0]['LNum'] + ' ocrv-row-level-' + row.members[0]['LNum'] + ' ocrv-row-click"';
+                if (row.members[0]['LNum'] == '0') {
+                    this.html.body += 'class="ocrv-row-level-' + row.members[0]['LNum'] + '"';
+                } else {
+                    this.html.body += 'class="ocrv-row-roll ocrv-row-level-' + row.members[0]['LNum'] + ' ocrv-row-click"';
+                }
             } else {
-                this.html.body += 'class="ocrv-row-datalevel-' + row.members[0]['LNum'] + ' ocrv-row-level-bottom"';
+                this.html.body += 'class="ocrv-row-roll ocrv-row-level-bottom"';
             }
             this.html.body += '>';
             this.levels = Math.max(parseInt(row.members[0]['LNum']), this.levels);
@@ -206,20 +210,41 @@ class OCRVreport {
             t.classList.remove('ocrv-row-hide-children');
         } else {
             for (let r = 0; r < rows.length; r++) {
-                rows[r].classList.add('ocrv-row-hide-self');
-                if (rows[r].classList.contains('ocrv-row-click') && !rows[r].classList.contains('ocrv-row-hide-children')) rows[r].click();
+                let row = rows[r];
+                row.classList.add('ocrv-row-hide-self');
+                if (row.classList.contains('ocrv-row-click') && !row.classList.contains('ocrv-row-hide-children')) row.click();
             }
             t.classList.add('ocrv-row-hide-children');
         }
     }
     unrollall() {
-        console.log(this.levels);
-        /*
-        if(this.levels > )
-        if(this.unrolled){
-            for(let )
-            let rows = this.container.getElementsByClassName('ocrv-row-datalevel-*');
-        }*/
+        if (this.levels > 1) {
+            let rows = this.container.getElementsByClassName('ocrv-row-roll');
+            for (let r = 0; r < rows.length; r++) {
+                let row = rows[r];
+                if (this.unrolled) {
+                    if (row.classList.contains('ocrv-row-level-1')) {
+                        if (row.classList.contains('ocrv-row-click')) row.classList.add('ocrv-row-hide-children');
+                    } else {
+                        if (row.classList.contains('ocrv-row-click')) {
+                            row.classList.add('ocrv-row-hide-children', 'ocrv-row-hide-self');
+                        } else {
+                            row.classList.add('ocrv-row-hide-self');
+                        }
+                    }
+                } else {
+                    if (row.classList.contains('ocrv-row-level-1')) {
+                        if (row.classList.contains('ocrv-row-click')) row.classList.remove('ocrv-row-hide-children');
+                    } else {
+                        if (row.classList.contains('ocrv-row-click')) {
+                            row.classList.remove('ocrv-row-hide-children', 'ocrv-row-hide-self');
+                        } else {
+                            row.classList.remove('ocrv-row-hide-self');
+                        }
+                    }
+                }
+            }
+        }
     }
     temple(t, d) {
         let r = /<%([^%>]+)?%>/, m;
