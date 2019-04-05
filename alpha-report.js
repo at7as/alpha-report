@@ -167,6 +167,7 @@ class OCRVreport {
         clicks.forEach(function (e) {
             e.onclick = this.unroll;
         });
+        /*
         $('.ocrv-row-click').click(function (e) {
             let id = $(e.currentTarget).attr('data-ocrv-id');
             if ($(e.currentTarget).hasClass('ocrv-row-hide-children')) {
@@ -182,7 +183,7 @@ class OCRVreport {
                 $(e.currentTarget).addClass('ocrv-row-hide-children');
             }
         });
-
+*/
         /*
         $('.ocrv-row-level-1').each(function (i, tr) { $(tr).click(); });
         $('#ocrv-unroll').click(function (e) {
