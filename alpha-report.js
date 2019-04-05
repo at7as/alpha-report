@@ -162,11 +162,12 @@ class OCRVreport {
         this.html.style += '</style>';
     }
     applyTable() {
-        document.getElementById(this.id + '-ocrv-report-container').innerHTML = this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
-        let clicks = document.getElementsByClassName('ocrv-row-click');
-        clicks.forEach(function (e) {
-            e.onclick = this.unroll;
-        });
+        let container = document.getElementById(this.id + '-ocrv-report-container');
+        container.innerHTML = this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
+        let rows = container.getElementsByClassName('ocrv-row-click');
+        for (let r = 0; r < rows.length; r++) {
+            rows[r].onclick = this.unroll;
+        }
         /*
         $('.ocrv-row-click').click(function (e) {
             let id = $(e.currentTarget).attr('data-ocrv-id');
