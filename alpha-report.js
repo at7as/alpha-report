@@ -208,7 +208,7 @@ class OCRVreport {
         return t;
     }
     unroll(e) {
-        console.log(e);
+        console.log(e.target);
 
     }
     export() {
