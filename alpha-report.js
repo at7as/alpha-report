@@ -18,8 +18,8 @@ class OCRVparser {
     getValue(varName) {
         let varObject = this.source.model.query.variables[varName];
         if (varObject) {
-            let varValue = (varObject.hasOwnProperty('value') ? varObject.value : varObject.defaultValue.value);
-            return varValue.replace(/[[\]]/g, '').split('.');
+            let varValue = (varObject.hasOwnProperty('value') ? varObject.value : (varObject.hasOwnProperty('defaultValue') ? varObject.defaultValue.value : ''));
+            return varValue ? varValue.replace(/[[\]]/g, '').split('.') : '';
         } else {
             return '';
         }
