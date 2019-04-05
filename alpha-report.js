@@ -220,9 +220,9 @@ class OCRVreport {
     unrollall() {
         if (this.levels > 1) {
             let rows = this.container.getElementsByClassName('ocrv-row-roll');
-            for (let r = 0; r < rows.length; r++) {
-                let row = rows[r];
-                if (this.unrolled) {
+            if (this.unrolled) {
+                for (let r = 0; r < rows.length; r++) {
+                    let row = rows[r];
                     if (row.classList.contains('ocrv-row-level-1')) {
                         if (row.classList.contains('ocrv-row-click')) row.classList.add('ocrv-row-hide-children');
                     } else {
@@ -232,8 +232,11 @@ class OCRVreport {
                             row.classList.add('ocrv-row-hide-self');
                         }
                     }
-                    this.unrolled = false;
-                } else {
+                }
+                this.unrolled = false;
+            } else {
+                for (let r = 0; r < rows.length; r++) {
+                    let row = rows[r];
                     if (row.classList.contains('ocrv-row-level-1')) {
                         if (row.classList.contains('ocrv-row-click')) row.classList.remove('ocrv-row-hide-children');
                     } else {
@@ -243,8 +246,8 @@ class OCRVreport {
                             row.classList.remove('ocrv-row-hide-self');
                         }
                     }
-                    this.unrolled = true;
                 }
+                this.unrolled = true;
             }
         }
     }
