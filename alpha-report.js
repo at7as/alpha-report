@@ -43,6 +43,7 @@ class OCRVreport {
         this.varParser = {};
         this.levels = 0;
         this.html = { head: '', body: '', style: '' };
+        this.container = {};
         this.update = this.update.bind(this);
         this.beforeUpdate = this.beforeUpdate.bind(this);
         this.export = this.export.bind(this);
@@ -72,7 +73,8 @@ class OCRVreport {
         this.widget.setLoading(false);
     }
     run() {
-        this.source.model.query.update(true);
+        console.log(this.varParser.getValue('Отчётный период'));
+        //this.source.model.query.update(true);
     }
     drawBlank() {
         let html = '<br/><br/><div><button id="' + this.id + '-ocrv-report-export">Экспорт</button><button id="' + this.id + '-ocrv-report-run">Сформировать</button></div>';
@@ -88,6 +90,7 @@ class OCRVreport {
         }
         html += '</div>';
         this.widget.setWidgetHtml(html);
+        this.container = document.getElementById(this.id + '-ocrv-report-container');
         document.getElementById(this.id + '-ocrv-report-export').onclick = this.export;
         document.getElementById(this.id + '-ocrv-report-run').onclick = this.run;
     }
@@ -119,7 +122,7 @@ class OCRVreport {
         for (let r = 0; r < result.rows.length; r++) {
             let row = result.rows[r];
             parents[parseInt(row.members[0]['LNum'])] = r;
-            this.html.body += '<tr id="' + this.id + '-ocrv-row-' + r + '" ';
+            this.html.body += '<tr data-ocrv-id="ocrv-row-' + r + '" ';
             if (r > 0) {
                 this.html.body += 'data-ocrv-parent="ocrv-row-' + parents[parseInt(row.members[0]['LNum']) - 1] + '" ';
             }
@@ -162,9 +165,8 @@ class OCRVreport {
         this.html.style += '</style>';
     }
     applyTable() {
-        let container = document.getElementById(this.id + '-ocrv-report-container');
-        container.innerHTML = this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
-        let rows = container.getElementsByClassName('ocrv-row-click');
+        this.container.innerHTML = this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
+        let rows = this.container.getElementsByClassName('ocrv-row-click');
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
         /*
 $('.ocrv-row-click').click(function (e) {
@@ -200,14 +202,31 @@ $('.ocrv-row-click').click(function (e) {
         });
 */
     }
+    unroll(e) {
+        let t = e.target;
+        if (t.tagName = 'TD') t = t.parentElement;
+
+        /*
+        let id = $(e.currentTarget).attr('data-ocrv-id');
+        if ($(e.currentTarget).hasClass('ocrv-row-hide-children')) {
+            $('#ocrv-report-container .ocrv-report-table *[data-ocrv-parent="' + id + '"]').each(function (i, tr) {
+                $(tr).removeClass('ocrv-row-hide-self');
+            });
+            $(e.currentTarget).removeClass('ocrv-row-hide-children');
+        } else {
+            $('#ocrv-report-container .ocrv-report-table *[data-ocrv-parent="' + id + '"]').each(function (i, tr) {
+                $(tr).addClass('ocrv-row-hide-self');
+                if ($(tr).hasClass('ocrv-row-click') && !$(tr).hasClass('ocrv-row-hide-children')) $(tr).click();
+            });
+            $(e.currentTarget).addClass('ocrv-row-hide-children');
+        }
+        */
+
+    }
     temple(t, d) {
         let r = /<%([^%>]+)?%>/, m;
         while (m = r.exec(t)) t = t.replace(m[0], d[m[1]]);
         return t;
-    }
-    unroll(e) {
-        console.log(e);
-
     }
     export() {
         var xlsx = new BarsUp.xlsx.View();
