@@ -210,7 +210,7 @@ $('.ocrv-row-click').click(function (e) {
         let t = e.target;
         if (t.tagName == 'TD') t = t.parentElement;
         let id = t.getAttribute('data-ocrv-id');
-        let rows = container.querySelectorAll('tr[data-ocrv-parent="' + id + '"]');
+        let rows = this.container.querySelectorAll('tr[data-ocrv-parent="' + id + '"]');
         if (t.classList.contains('ocrv-row-hide-children')) {
             for (let r = 0; r < rows.length; r++) rows[r].classList.remove('ocrv-row-hide-self');
             t.classList.remove('ocrv-row-hide-children');
