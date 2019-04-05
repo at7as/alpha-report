@@ -73,8 +73,8 @@ class OCRVreport {
         this.widget.setLoading(false);
     }
     run() {
-        console.log(this.varParser.getValue('Отчётный период'));
-        //this.source.model.query.update(true);
+        if (this.varParser.getValue('Отчётный период').length < 4) return;
+        this.source.model.query.update(true);
     }
     drawBlank() {
         let html = '<br/><br/><div><button id="' + this.id + '-ocrv-report-export">Экспорт</button><button id="' + this.id + '-ocrv-report-run">Сформировать</button></div>';
