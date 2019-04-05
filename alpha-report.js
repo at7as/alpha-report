@@ -175,7 +175,7 @@ class OCRVreport {
         this.container.innerHTML = this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
         let rows = this.container.getElementsByClassName('ocrv-row-click');
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
-        this.container.getElementById(this.id + '-ocrv-report-unroll').onclick = this.unrollall;
+        document.getElementById(this.id + '-ocrv-report-unroll').onclick = this.unrollall;
         this.unrollall();
 
 
