@@ -233,16 +233,13 @@ class OCRVreport {
                         }
                     }
                 } else {
-                    for (let r = 0; r < rows.length; r++) {
-                        let row = rows[r];
-                        if (row.classList.contains('ocrv-row-level-1')) {
-                            if (row.classList.contains('ocrv-row-click')) row.classList.remove('ocrv-row-hide-children');
+                    if (row.classList.contains('ocrv-row-level-1')) {
+                        if (row.classList.contains('ocrv-row-click')) row.classList.remove('ocrv-row-hide-children');
+                    } else {
+                        if (row.classList.contains('ocrv-row-click')) {
+                            row.classList.remove('ocrv-row-hide-children', 'ocrv-row-hide-self');
                         } else {
-                            if (row.classList.contains('ocrv-row-click')) {
-                                row.classList.remove('ocrv-row-hide-children', 'ocrv-row-hide-self');
-                            } else {
-                                row.classList.remove('ocrv-row-hide-self');
-                            }
+                            row.classList.remove('ocrv-row-hide-self');
                         }
                     }
                 }
