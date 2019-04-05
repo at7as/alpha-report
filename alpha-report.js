@@ -181,24 +181,6 @@ class OCRVreport {
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
         document.getElementById(this.id + '-ocrv-report-unroll').onclick = this.unrollall;
         this.unrollall();
-
-
-        /*
-        $('.ocrv-row-level-1').each(function (i, tr) { $(tr).click(); });
-        $('#ocrv-unroll').click(function (e) {
-            if (!$(e.currentTarget).hasClass('ocrv-unroll')) {
-                $('#ocrv-report-container .ocrv-report-table .ocrv-row-click').each(function (i, tr) {
-                    if ($(tr).hasClass('ocrv-row-hide-children')) $(tr).click();
-                });
-                $(e.currentTarget).addClass('ocrv-unroll')
-            } else {
-                $('#ocrv-report-container .ocrv-report-table .ocrv-row-click').each(function (i, tr) {
-                    if (!$(tr).hasClass('ocrv-row-hide-children')) $(tr).click();
-                });
-                $(e.currentTarget).removeClass('ocrv-unroll')
-            }
-        });
-*/
     }
     unroll(e) {
         let t = e.target;
@@ -272,7 +254,5 @@ class OCRVreport {
 };
 
 /*
-изолировать
-всё в конфиг
 excel
 */
