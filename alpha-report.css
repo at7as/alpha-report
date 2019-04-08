@@ -122,48 +122,26 @@
 }
 
 .ocrv-report-table {
-    width: 100%;
+    width: 100%
 }
 
-.ocrv-report-table, .ocrv-report-table td {
-    border-collapse: collapse;
-    border: 1px solid #000;
-}
-
-.ocrv-report-table thead {
-    display: table;
-    /* to take the same width as tr */
-    width: calc(100% - 17px);
-    /* - 17px because of the scrollbar width */
-}
-
-.ocrv-report-table tbody {
+.ocrv-report-table>thead, .ocrv-report-table>tbody, .ocrv-report-table>thead>tr, .ocrv-report-table>tbody>tr, .ocrv-report-table>thead>tr>th, .ocrv-report-table>tbody>tr>td {
     display: block;
-    /* to enable vertical scrolling */
-    max-height: 200px;
-    /* e.g. */
-    overflow-y: scroll;
-    /* keeps the scrollbar even if it doesn't need it; display purpose */
 }
 
-.ocrv-report-table th, .ocrv-report-table td {
-    width: 33.33%;
-    /* to enable "word-break: break-all" */
-    padding: 5px;
-    word-break: break-all;
-    /* 4. */
+.ocrv-report-table>tbody>tr:after, .ocrv-report-table>thead>tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
 }
 
-.ocrv-report-table tr {
-    display: table;
-    /* display purpose; th's border */
-    width: 100%;
-    box-sizing: border-box;
-    /* because of the border (Chrome needs this line, but not FF) */
+.ocrv-report-table>tbody {
+    overflow-y: auto;
+    height: 150px;
 }
 
-.ocrv-report-table td {
-    text-align: center;
-    border-bottom: none;
-    border-left: none;
+.ocrv-report-table>tbody>tr>td, .ocrv-report-table>thead>tr>th {
+    width: 20%;
+    float: left;
 }
