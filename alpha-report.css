@@ -65,10 +65,12 @@
     border-collapse: collapse;
 }
 
-.ocrv-report-table * {}
-
 .ocrv-report-table thead * {
     background: #ddd;
+    border: 1px #999 solid;
+}
+
+.ocrv-report-table tbody * {
     border: 1px #999 solid;
 }
 
