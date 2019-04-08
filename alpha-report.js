@@ -111,7 +111,7 @@ class OCRVreport {
                     c: (el.hasOwnProperty('c') ? ' colspan="' + el.c + '"' : ''),
                     n: this.temple(el.n, vars)
                 };
-                this.html.head += '<th' + elp.r + elp.c + '>' + elp.n + '</th>'
+                this.html.head += '<th ' + (tr === 0 ? 'class="thead-top"' : (tr == this.header.length-1 ? 'class="thead-bottom"' : '')) + elp.r + elp.c + '>' + elp.n + '</th>'
             }
             this.html.head += '</tr>';
         }
