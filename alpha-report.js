@@ -178,6 +178,9 @@ class OCRVreport {
     }
     applyTable() {
         this.container.innerHTML = this.html.style + '<table id="' + this.id + '-ocrv-report-table" class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
+        let rows = this.container.getElementsByClassName('ocrv-row-click');
+        for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
+        this.unrollall();
         let thead = document.getElementById(this.id + '-ocrv-report-table-thead');
         let trs = thead.getElementsByTagName('tr');
         for (let r = 0; r < trs.length; r++) {
@@ -193,9 +196,6 @@ class OCRVreport {
         console.log(thead.getBoundingClientRect());
         theadClone.style.top = thead.getBoundingClientRect().top + 'px';
         document.getElementById(this.id + '-ocrv-report-table-thead').after(theadClone);
-        let rows = this.container.getElementsByClassName('ocrv-row-click');
-        for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
-        this.unrollall();
     }
     unroll(e) {
         let t = e.target;
