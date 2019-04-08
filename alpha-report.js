@@ -134,7 +134,7 @@ class OCRVreport {
                 if (row.members[0]['LNum'] == '0') {
                     this.html.body += 'class="ocrv-row-level-0"';
                 } else if (row.members[0]['LNum'] == '1') {
-                    this.html.body += 'class="ocrv-row-level-1 ocrv-row-click ocrv-row-hide-children"';
+                    this.html.body += 'class="ocrv-row-level-1 ocrv-row-click"';
                 } else {
                     this.html.body += 'class="ocrv-row-roll ocrv-row-level-' + row.members[0]['LNum'] + ' ocrv-row-click"';
                 }
@@ -226,28 +226,29 @@ class OCRVreport {
     }
     unrollall() {
         if (this.levels > 1) {
-            let rows = this.container.getElementsByClassName('ocrv-row-roll');
+            let rows = this.container.getElementsByClassName('ocrv-row-level-1');
             for (let r = 0; r < rows.length; r++) {
                 let row = rows[r];
                 if (this.unrolled) {
-                    if (row.classList.contains('ocrv-row-level-1')) {
-                        if (row.classList.contains('ocrv-row-click')) row.classList.add('ocrv-row-hide-children');
+                    row.classList.add('ocrv-row-hide-children');
+                } else {
+                    row.classList.remove('ocrv-row-hide-children');
+                }
+            }
+            rows = this.container.getElementsByClassName('ocrv-row-roll');
+            for (let r = 0; r < rows.length; r++) {
+                let row = rows[r];
+                if (this.unrolled) {
+                    if (row.classList.contains('ocrv-row-click')) {
+                        row.classList.add('ocrv-row-hide-children', 'ocrv-row-hide-self');
                     } else {
-                        if (row.classList.contains('ocrv-row-click')) {
-                            row.classList.add('ocrv-row-hide-children', 'ocrv-row-hide-self');
-                        } else {
-                            row.classList.add('ocrv-row-hide-self');
-                        }
+                        row.classList.add('ocrv-row-hide-self');
                     }
                 } else {
-                    if (row.classList.contains('ocrv-row-level-1')) {
-                        if (row.classList.contains('ocrv-row-click')) row.classList.remove('ocrv-row-hide-children');
+                    if (row.classList.contains('ocrv-row-click')) {
+                        row.classList.remove('ocrv-row-hide-children', 'ocrv-row-hide-self');
                     } else {
-                        if (row.classList.contains('ocrv-row-click')) {
-                            row.classList.remove('ocrv-row-hide-children', 'ocrv-row-hide-self');
-                        } else {
-                            row.classList.remove('ocrv-row-hide-self');
-                        }
+                        row.classList.remove('ocrv-row-hide-self');
                     }
                 }
             }
