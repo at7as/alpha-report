@@ -11,15 +11,23 @@
     display: flex;
 }
 
+.ocrv-report-control-left button {
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
 .ocrv-report-control-right {
     justify-content: flex-end;
+}
+
+.ocrv-report-control-right {
+    margin-left: 10px;
+    margin-right: 5px;
 }
 
 .ocrv-report-control button {
     border: 1px solid #d6d6d6;
     border-radius: 3px;
-    margin-left: 10px;
-    margin-right: 5px;
     box-shadow: inset 0px -2px 5px 0px rgba(0, 0, 0, 0.1);
     background: #fff;
     cursor: pointer;
@@ -46,7 +54,7 @@
 
 .ocrv-report-header {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
 }
@@ -65,7 +73,7 @@
 }
 
 .ocrv-h2 {
-    margin-top: 20px;
+    margin-top: 12px;
     font-size: 16px;
 }
 

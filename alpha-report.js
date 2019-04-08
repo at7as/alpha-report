@@ -92,6 +92,8 @@ class OCRVreport {
         html += '</div>';
         this.widget.setWidgetHtml(html);
         this.container = document.getElementById(this.id + '-ocrv-report-container');
+        this.container.style.height = (this.container.parentElement.getBoundingClientRect().height - document.getElementById(this.id + '-ocrv-report-footer').getBoundingClientRect().height - (this.container.getBoundingClientRect().top - this.container.parentElement.getBoundingClientRect().top)) + 'px';
+        this.container.style.overflowY = 'scroll';
         document.getElementById(this.id + '-ocrv-report-unroll').onclick = this.unrollall;
         document.getElementById(this.id + '-ocrv-report-export').onclick = this.export;
         document.getElementById(this.id + '-ocrv-report-run').onclick = this.run;
@@ -190,8 +192,6 @@ class OCRVreport {
         theadClone.id = '';
         theadClone.style.top = thead.getBoundingClientRect().top + 'px';
         document.getElementById(this.id + '-ocrv-report-table-thead').after(theadClone);
-        this.container.style.height = (this.container.parentElement.getBoundingClientRect().height - document.getElementById(this.id + '-ocrv-report-footer').getBoundingClientRect().height - (this.container.getBoundingClientRect().top - this.container.parentElement.getBoundingClientRect().top)) + 'px';
-        this.container.style.overflowY = 'scroll';
         let rows = this.container.getElementsByClassName('ocrv-row-click');
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
         this.unrollall();
@@ -241,7 +241,7 @@ class OCRVreport {
                 }
             }
             if (this.unrolled){
-                document.getElementById(this.id + '-ocrv-report-unroll').innerHTML = '<i class="fa fa-chevron-down"></i>&nbsp;Развернуть всё';
+                document.getElementById(this.id + '-ocrv-report-unroll').innerHTML = '<i class="fa fa-angle-double-down"></i>&nbsp;Развернуть всё';
                 this.unrolled = false;
             }else{
                 document.getElementById(this.id + '-ocrv-report-unroll').innerHTML = '<i class="fa fa-angle-double-up"></i>&nbsp;Свернуть всё';
@@ -272,30 +272,6 @@ class OCRVreport {
         xlsx.exportToExcel({ fileName: 'example-file' });
         */
     }
-    /*
-    floathead() {
-        let table = document.getElementById(this.id + '-ocrv-report-table')
-        let offset = table.offset();
-        let scrollTop = window.scrollY;
-        $(".persist-area").each(function () {
-
-            var el = $(this),
-                offset = el.offset(),
-                scrollTop = $(window).scrollTop(),
-                floatingHeader = $(".floatingHeader", this)
-
-            if ((scrollTop > offset.top) && (scrollTop < offset.top + el.height())) {
-                floatingHeader.css({
-                    "visibility": "visible"
-                });
-            } else {
-                floatingHeader.css({
-                    "visibility": "hidden"
-                });
-            };
-        });
-    }
-    */
 };
 
 /*
