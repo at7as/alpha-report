@@ -85,7 +85,9 @@
     background: rgb(104, 121, 139);
     border-color: rgb(242, 242, 242);
     color: white;
-    padding: 3px;
+    /*padding: 3px;*/
+    font-weight: normal;
+    font-size: 14px;
 }
 
 .ocrv-report-table .thead-top {
@@ -99,7 +101,7 @@
 .ocrv-report-table tbody td {
     border: 1px rgb(242, 242, 242) solid;
     color: #000;
-    padding: 3px;
+    /*padding: 3px;*/
 }
 
 .ocrv-row-value {
