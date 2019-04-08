@@ -120,28 +120,3 @@
 .ocrv-row-hide-self {
     visibility: collapse;
 }
-
-.ocrv-report-table {
-    width: 100%
-}
-
-.ocrv-report-table>thead, .ocrv-report-table>tbody, .ocrv-report-table>thead>tr, .ocrv-report-table>tbody>tr, .ocrv-report-table>thead>tr>th, .ocrv-report-table>tbody>tr>td {
-    display: block;
-}
-
-.ocrv-report-table>tbody>tr:after, .ocrv-report-table>thead>tr:after {
-    content: ' ';
-    display: block;
-    visibility: hidden;
-    clear: both;
-}
-
-.ocrv-report-table>tbody {
-    overflow-y: auto;
-    height: 150px;
-}
-
-.ocrv-report-table>tbody>tr>td, .ocrv-report-table>thead>tr>th {
-    width: 20%;
-    float: left;
-}
