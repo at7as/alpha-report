@@ -79,7 +79,7 @@ class OCRVreport {
         this.source.model.query.update(true);
     }
     drawBlank() {
-        let html = '<div id="' + this.id + '-ocrv-report-control" class="ocrv-report-control"><div class="ocrv-report-control-left"><button id="' + this.id + '-ocrv-report-unroll" disabled><i class="fa fa-angle-double-down"></i>&nbsp;Развернуть всё</button></div><div class="ocrv-report-control-right"><button id="' + this.id + '-ocrv-report-export" disabled><i class="fa fa-file-excel-o"></i>&nbsp;Экспорт</button><button id="' + this.id + '-ocrv-report-run"><i class="fa fa-bolt"></i>&nbsp;Сформировать</button></div></div>';
+        let html = '<div id="' + this.id + '-ocrv-report-control" class="ocrv-report-control"><div class="ocrv-report-control-left"><button id="' + this.id + '-ocrv-report-unroll"><i class="fa fa-angle-double-down"></i>&nbsp;Развернуть всё</button></div><div class="ocrv-report-control-right"><button id="' + this.id + '-ocrv-report-export" disabled><i class="fa fa-file-excel-o"></i>&nbsp;Экспорт</button><button id="' + this.id + '-ocrv-report-run"><i class="fa fa-bolt"></i>&nbsp;Сформировать</button></div></div>';
         html += '<div id="' + this.id + '-ocrv-report-header" class="ocrv-report-header">';
         html += '<span class="ocrv-h1">' + this.h1 + '</span>';
         if (this.h2) html += '<span class="ocrv-h2">' + this.h2 + '</span>';
@@ -92,6 +92,7 @@ class OCRVreport {
         html += '</div>';
         this.widget.setWidgetHtml(html);
         this.container = document.getElementById(this.id + '-ocrv-report-container');
+        document.getElementById(this.id + '-ocrv-report-unroll').onclick = this.unrollall;
         document.getElementById(this.id + '-ocrv-report-export').onclick = this.export;
         document.getElementById(this.id + '-ocrv-report-run').onclick = this.run;
     }
@@ -106,8 +107,7 @@ class OCRVreport {
                 let elp = {
                     r: (el.hasOwnProperty('r') ? ' rowspan="' + el.r + '"' : ''),
                     c: (el.hasOwnProperty('c') ? ' colspan="' + el.c + '"' : ''),
-                    n: this.temple(el.n, vars),
-                    u: (el.hasOwnProperty('u') ? ' id="' + this.id + '-ocrv-report-unroll" class="ocrv-report-unroll"' : '')
+                    n: this.temple(el.n, vars)
                 };
                 this.html.head += '<th' + elp.r + elp.c + elp.u + '>' + elp.n + '</th>'
             }
@@ -194,7 +194,6 @@ class OCRVreport {
         this.container.style.overflowY = 'scroll';
         let rows = this.container.getElementsByClassName('ocrv-row-click');
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
-        document.getElementById(this.id + '-ocrv-report-unroll').onclick = this.unrollall;
         this.unrollall();
     }
     unroll(e) {
@@ -241,7 +240,13 @@ class OCRVreport {
                     }
                 }
             }
-            this.unrolled = !this.unrolled;
+            if (this.unrolled){
+                document.getElementById(this.id + '-ocrv-report-unroll').innerHTML = '<i class="fa fa-chevron-down"></i>&nbsp;Развернуть всё';
+                this.unrolled = false;
+            }else{
+                document.getElementById(this.id + '-ocrv-report-unroll').innerHTML = '<i class="fa fa-angle-double-up"></i>&nbsp;Свернуть всё';
+                this.unrolled = true;
+            }
         }
     }
     temple(t, d) {
