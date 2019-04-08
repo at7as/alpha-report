@@ -124,5 +124,5 @@
 
 .ocrv-report-head-clone {
     position: fixed;
-    visibility: hidden;
+    /*visibility: hidden;*/
 }

@@ -188,8 +188,10 @@ class OCRVreport {
         let theadClone = thead.cloneNode(true);
         theadClone.classList.add('ocrv-report-head-clone');
         theadClone.id = '';
-        theadClone.style.top = this.container.parentElement.getBoundingClientRect().top + 'px';
+        theadClone.style.top = thead.getBoundingClientRect().top + 'px';
         document.getElementById(this.id + '-ocrv-report-table-thead').after(theadClone);
+        this.container.style.height = (this.container.parentElement.getBoundingClientRect().height - document.getElementById(this.id + '-ocrv-report-footer').getBoundingClientRect().height - (this.container.getBoundingClientRect().top - this.container.parentElement.getBoundingClientRect().top)) + 'px';
+
 
         let rows = this.container.getElementsByClassName('ocrv-row-click');
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
