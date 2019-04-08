@@ -179,7 +179,6 @@ class OCRVreport {
         let thead = document.getElementById(this.id + '-ocrv-report-table-thead');
         let trs = thead.getElementsByTagName('tr');
         for (let r = 0; r < trs.length; r++) {
-            let row = trs[r];
             trs[r].style.height = trs[r].getBoundingClientRect().height + 'px';
             let ths = trs[r].getElementsByTagName('th');
             for (let h = 0; h < ths.length; h++) {
