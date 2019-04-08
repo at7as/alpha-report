@@ -210,8 +210,9 @@ class OCRVreport {
         if (t.tagName == 'TD') t = t.parentElement;
         let id = t.getAttribute('data-ocrv-id');
         let rows = this.container.querySelectorAll('tr[data-ocrv-parent="' + id + '"]');
+        console.log(t);
+
         if (t.classList.contains('ocrv-row-hide-children')) {
-            console.log(t);
             for (let r = 0; r < rows.length; r++) rows[r].classList.remove('ocrv-row-hide-self');
             t.classList.remove('ocrv-row-hide-children');
         } else {
