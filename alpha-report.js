@@ -132,12 +132,20 @@ class OCRVreport {
             }
             if (r < result.rows.length - 1 && parseInt(result.rows[r + 1].members[0]['LNum']) > parseInt(row.members[0]['LNum'])) {
                 if (row.members[0]['LNum'] == '0') {
-                    this.html.body += 'class="ocrv-row-level-' + row.members[0]['LNum'] + '"';
+                    this.html.body += 'class="ocrv-row-level-0"';
+                } else if (row.members[0]['LNum'] == '1') {
+                    this.html.body += 'class="ocrv-row-level-1 ocrv-row-click"';
                 } else {
                     this.html.body += 'class="ocrv-row-roll ocrv-row-level-' + row.members[0]['LNum'] + ' ocrv-row-click"';
                 }
             } else {
-                this.html.body += 'class="ocrv-row-roll ocrv-row-level-bottom"';
+                if (row.members[0]['LNum'] == '0') {
+                    this.html.body += 'class="ocrv-row-level-0"';
+                } else if (row.members[0]['LNum'] == '1') {
+                    this.html.body += 'class="ocrv-row-level-bottom"';
+                } else {
+                    this.html.body += 'class="ocrv-row-roll ocrv-row-level-bottom"';
+                }
             }
             this.html.body += '>';
             this.levels = Math.max(parseInt(row.members[0]['LNum']), this.levels);
@@ -241,10 +249,10 @@ class OCRVreport {
                     }
                 }
             }
-            if (this.unrolled){
+            if (this.unrolled) {
                 document.getElementById(this.id + '-ocrv-report-unroll').innerHTML = '<i class="fa fa-angle-double-down"></i>&nbsp;Развернуть всё';
                 this.unrolled = false;
-            }else{
+            } else {
                 document.getElementById(this.id + '-ocrv-report-unroll').innerHTML = '<i class="fa fa-angle-double-up"></i>&nbsp;Свернуть всё';
                 this.unrolled = true;
             }
