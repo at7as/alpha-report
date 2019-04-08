@@ -191,6 +191,7 @@ class OCRVreport {
         theadClone.style.top = thead.getBoundingClientRect().top + 'px';
         document.getElementById(this.id + '-ocrv-report-table-thead').after(theadClone);
         this.container.style.height = (this.container.parentElement.getBoundingClientRect().height - document.getElementById(this.id + '-ocrv-report-footer').getBoundingClientRect().height - (this.container.getBoundingClientRect().top - this.container.parentElement.getBoundingClientRect().top)) + 'px';
+        this.container.style.overflowY = 'scroll';
 
 
         let rows = this.container.getElementsByClassName('ocrv-row-click');

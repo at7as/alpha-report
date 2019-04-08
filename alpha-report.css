@@ -45,7 +45,7 @@
 
 .ocrv-report-container {
     margin-top: 20px;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
 }
 
 .ocrv-report-footer {
