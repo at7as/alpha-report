@@ -190,6 +190,7 @@ class OCRVreport {
         let theadClone = thead.cloneNode(true);
         theadClone.classList.add('ocrv-report-head-clone');
         theadClone.id = '';
+        console.log(thead.getBoundingClientRect());
         theadClone.style.top = thead.getBoundingClientRect().top + 'px';
         document.getElementById(this.id + '-ocrv-report-table-thead').after(theadClone);
         let rows = this.container.getElementsByClassName('ocrv-row-click');
