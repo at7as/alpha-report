@@ -79,7 +79,7 @@ class OCRVreport {
         this.source.model.query.update(true);
     }
     drawBlank() {
-        let html = '<div id="' + this.id + '-ocrv-report-control" class="ocrv-report-control"><button id="' + this.id + '-ocrv-report-export" disabled>Экспорт</button><button id="' + this.id + '-ocrv-report-run">Сформировать</button></div>';
+        let html = '<div id="' + this.id + '-ocrv-report-control" class="ocrv-report-control"><div class="ocrv-report-control-left"><button id="' + this.id + '-ocrv-report-unroll" disabled><i class="fa fa-angle-double-down"></i>&nbsp;Развернуть всё</button></div><div class="ocrv-report-control-right"><button id="' + this.id + '-ocrv-report-export" disabled><i class="fa fa-file-excel-o"></i>&nbsp;Экспорт</button><button id="' + this.id + '-ocrv-report-run"><i class="fa fa-bolt"></i>&nbsp;Сформировать</button></div></div>';
         html += '<div id="' + this.id + '-ocrv-report-header" class="ocrv-report-header">';
         html += '<span class="ocrv-h1">' + this.h1 + '</span>';
         if (this.h2) html += '<span class="ocrv-h2">' + this.h2 + '</span>';
@@ -192,8 +192,6 @@ class OCRVreport {
         document.getElementById(this.id + '-ocrv-report-table-thead').after(theadClone);
         this.container.style.height = (this.container.parentElement.getBoundingClientRect().height - document.getElementById(this.id + '-ocrv-report-footer').getBoundingClientRect().height - (this.container.getBoundingClientRect().top - this.container.parentElement.getBoundingClientRect().top)) + 'px';
         this.container.style.overflowY = 'scroll';
-
-
         let rows = this.container.getElementsByClassName('ocrv-row-click');
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
         document.getElementById(this.id + '-ocrv-report-unroll').onclick = this.unrollall;
