@@ -98,7 +98,7 @@ class OCRVreport {
     drawHead() {
         let vars = {};
         for (let v = 0; v < this.vars.length; v++) vars[this.vars[v]] = this.varParser[this.vars[v]]();
-        this.html.head = '<thead>';
+        this.html.head = '<thead id="' + this.id + '-ocrv-report-table-thead">';
         for (let tr = 0; tr < this.header.length; tr++) {
             this.html.head += '<tr>';
             for (let th = 0; th < this.header[tr].length; th++) {
@@ -175,7 +175,11 @@ class OCRVreport {
         this.html.style += '</style>';
     }
     applyTable() {
-        this.container.innerHTML = this.html.style + '<table class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
+        this.container.innerHTML = this.html.style + '<table id="' + this.id + '-ocrv-report-table" class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
+        let theadClone = document.getElementById(this.id + '-ocrv-report-table-thead').cloneNode(true);
+        theadClone.classList.add('ocrv-report-head-clone');
+        theadClone.id = '';
+        document.getElementById(this.id + '-ocrv-report-table-thead').after(theadClone);
         let rows = this.container.getElementsByClassName('ocrv-row-click');
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
         document.getElementById(this.id + '-ocrv-report-unroll').onclick = this.unrollall;
@@ -251,7 +255,30 @@ class OCRVreport {
         xlsx.exportToExcel({ fileName: 'example-file' });
         */
     }
+    /*
+    floathead() {
+        let table = document.getElementById(this.id + '-ocrv-report-table')
+        let offset = table.offset();
+        let scrollTop = window.scrollY;
+        $(".persist-area").each(function () {
 
+            var el = $(this),
+                offset = el.offset(),
+                scrollTop = $(window).scrollTop(),
+                floatingHeader = $(".floatingHeader", this)
+
+            if ((scrollTop > offset.top) && (scrollTop < offset.top + el.height())) {
+                floatingHeader.css({
+                    "visibility": "visible"
+                });
+            } else {
+                floatingHeader.css({
+                    "visibility": "hidden"
+                });
+            };
+        });
+    }
+    */
 };
 
 /*

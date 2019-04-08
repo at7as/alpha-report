@@ -120,3 +120,8 @@
 .ocrv-row-hide-self {
     visibility: collapse;
 }
+
+.ocrv-report-head-clone {
+    position: fixed;
+    visibility: hidden;
+}
