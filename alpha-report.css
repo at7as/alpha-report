@@ -120,3 +120,50 @@
 .ocrv-row-hide-self {
     visibility: collapse;
 }
+
+.ocrv-report-table {
+    width: 100%;
+}
+
+.ocrv-report-table, .ocrv-report-table td {
+    border-collapse: collapse;
+    border: 1px solid #000;
+}
+
+.ocrv-report-table thead {
+    display: table;
+    /* to take the same width as tr */
+    width: calc(100% - 17px);
+    /* - 17px because of the scrollbar width */
+}
+
+.ocrv-report-table tbody {
+    display: block;
+    /* to enable vertical scrolling */
+    max-height: 200px;
+    /* e.g. */
+    overflow-y: scroll;
+    /* keeps the scrollbar even if it doesn't need it; display purpose */
+}
+
+.ocrv-report-table th, .ocrv-report-table td {
+    width: 33.33%;
+    /* to enable "word-break: break-all" */
+    padding: 5px;
+    word-break: break-all;
+    /* 4. */
+}
+
+.ocrv-report-table tr {
+    display: table;
+    /* display purpose; th's border */
+    width: 100%;
+    box-sizing: border-box;
+    /* because of the border (Chrome needs this line, but not FF) */
+}
+
+.ocrv-report-table td {
+    text-align: center;
+    border-bottom: none;
+    border-left: none;
+}
