@@ -201,7 +201,6 @@ class OCRVreport {
         let theadClone = thead.cloneNode(true);
         theadClone.classList.add('ocrv-report-head-clone');
         theadClone.id = '';
-        console.log(thead.getBoundingClientRect());
         theadClone.style.top = thead.getBoundingClientRect().top + 'px';
         document.getElementById(this.id + '-ocrv-report-table-thead').after(theadClone);
     }
@@ -210,8 +209,6 @@ class OCRVreport {
         if (t.tagName == 'TD') t = t.parentElement;
         let id = t.getAttribute('data-ocrv-id');
         let rows = this.container.querySelectorAll('tr[data-ocrv-parent="' + id + '"]');
-        console.log(t);
-
         if (t.classList.contains('ocrv-row-hide-children')) {
             for (let r = 0; r < rows.length; r++) rows[r].classList.remove('ocrv-row-hide-self');
             t.classList.remove('ocrv-row-hide-children');
