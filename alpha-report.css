@@ -86,19 +86,18 @@
     border: 1px #999 solid;
 }
 
+.ocrv-report-table th {
+    background: rgb(104, 121, 139);
+    border-color: rgb(242,242,242);
+    color: white;
+}
+
 .ocrv-report-table .thead-top {
-    border-top-color: red;
+    border-top-color: red !important;
 }
 
 .ocrv-report-table .thead-bottom {
-    border-bottom-color: red;
-}
-
-.ocrv-report-table th {
-    background: rgb(104, 121, 139);
-    border-left-color: white;
-    border-right-color: white;
-    color: white;
+    border-bottom-color: red !important;
 }
 
 .ocrv-report-table tbody * {
