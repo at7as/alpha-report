@@ -152,7 +152,11 @@ class OCRVreport {
             this.levels = Math.max(parseInt(row.members[0]['LNum']), this.levels);
             if (this.numerable) this.html.body += '<td class="ocrv-item-numpp">' + (r + 1) + '</td>';
             for (let d = 0; d < row.members.length; d++) {
-                this.html.body += '<td class="ocrv-item-level-' + row.members[d]['LNum'] + '">';
+                this.html.body += '<td class="ocrv-item-caption">&nbsp;';
+                //this.html.body += '<td class="ocrv-item-level-' + row.members[d]['LNum'] + '">&nbsp;';
+                for (let d = 0; d < parseInt(row.members[0]['LNum']); d++) {
+                    this.html.body += '&bull;&nbsp;';
+                }
                 this.html.body += row.members[d]['Caption'];
                 this.html.body += '</td>';
             }

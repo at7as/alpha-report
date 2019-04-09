@@ -87,7 +87,7 @@
     padding: 3px;
     font-weight: normal;
     font-size: 14px;
-    border: 1px solid rgba(242, 242, 242, 0.33);
+    border: 1px solid rgb(169, 169, 169);
 }
 
 .ocrv-report-table .thead-bottom {
@@ -107,6 +107,7 @@
 
 .ocrv-item-numpp {
     padding: 3px;
+    text-align: center;
 }
 
 .ocrv-item-value {
