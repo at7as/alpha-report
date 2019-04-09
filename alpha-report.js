@@ -154,7 +154,7 @@ class OCRVreport {
             for (let d = 0; d < row.members.length; d++) {
                 this.html.body += '<td class="ocrv-item-caption">&nbsp;';
                 //this.html.body += '<td class="ocrv-item-level-' + row.members[d]['LNum'] + '">&nbsp;';
-                for (let d = 0; d < parseInt(row.members[0]['LNum']); d++) {
+                for (let b = 0; b < parseInt(row.members[0]['LNum']); b++) {
                     this.html.body += '&bull;&nbsp;';
                 }
                 this.html.body += row.members[d]['Caption'];
