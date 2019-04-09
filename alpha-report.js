@@ -52,6 +52,8 @@ class OCRVreport {
         this.run = this.run.bind(this);
         this.unroll = this.unroll.bind(this);
         this.unrollall = this.unrollall.bind(this);
+        this.tbodyhover = this.tbodyhover.bind(this);
+        this.tbodyunhover = this.tbodyunhover.bind(this);
     }
     init() {
         this.source = this.widget.getDataSource(this.sourceName);
@@ -85,16 +87,8 @@ class OCRVreport {
         if (this.h2) html += '<span class="ocrv-h2">' + this.h2 + '</span>';
         html += '</div>';
         html += '<div id="' + this.id + '-ocrv-report-container" class="ocrv-report-container"></div>';
-        /*
-        html += '<div id="' + this.id + '-ocrv-report-footer" class="ocrv-report-footer">';
-        for (let r = 0; r < this.footer.length; r++) {
-            html += this.footer[r] + (r < this.footer.length - 1 ? '<br/>' : '');
-        }
-        html += '</div>';
-        */
         this.widget.setWidgetHtml(html);
         this.container = document.getElementById(this.id + '-ocrv-report-container');
-        //this.container.style.height = (this.container.parentElement.getBoundingClientRect().height - document.getElementById(this.id + '-ocrv-report-footer').getBoundingClientRect().height - (this.container.getBoundingClientRect().top - this.container.parentElement.getBoundingClientRect().top)) + 'px';
         this.container.style.height = (this.container.parentElement.getBoundingClientRect().height - this.container.getBoundingClientRect().top + this.container.parentElement.getBoundingClientRect().top) + 'px';
         this.container.style.overflowY = 'scroll';
         document.getElementById(this.id + '-ocrv-report-unroll').onclick = this.unrollall;
@@ -125,7 +119,6 @@ class OCRVreport {
         this.levels = 0;
         this.unrolled = true;
         let result = this.source.model.lastResult;
-        console.log(result);
         let parents = [];
         this.html.body = '<tbody>';
         for (let r = 0; r < result.rows.length; r++) {
@@ -212,6 +205,8 @@ class OCRVreport {
         for (let r = 0; r < this.footer.length; r++) html += this.footer[r] + (r < this.footer.length - 1 ? '<br/>' : '');
         html += '</div>';
         this.container.innerHTML = html;
+        document.getElementById(this.id + '-ocrv-report-table').onmouseover = this.tbodyhover;
+        document.getElementById(this.id + '-ocrv-report-table').onmouseout = this.tbodyunhover;
         let rows = this.container.getElementsByClassName('ocrv-row-click');
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
         this.unrollall();
@@ -289,6 +284,14 @@ class OCRVreport {
         while (m = r.exec(t)) t = t.replace(m[0], d[m[1]]);
         return t;
     }
+    tbodyhover(e) {
+        console.log('hover', e);
+
+    }
+    tbodyunhover(e) {
+        console.log('unhover', e);
+    }
+
     export() {
         /*
         var xlsx = new BarsUp.xlsx.View();
