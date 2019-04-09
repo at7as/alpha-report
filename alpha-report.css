@@ -83,19 +83,19 @@
 
 .ocrv-report-table th {
     background: rgb(104, 121, 139);
-    border-color: rgb(242, 242, 242);
     color: white;
-    /*padding: 3px;*/
+    padding: 3px;
     font-weight: normal;
     font-size: 14px;
+    border: 1px solid rgb(242, 242, 242);
 }
 
 .ocrv-report-table .thead-top {
-    border-top-color: red !important;
+    border-top-color: rgb(253, 236, 173);
 }
 
 .ocrv-report-table .thead-bottom {
-    border-bottom-color: red !important;
+    border-bottom-color: rgb(253, 236, 173);
 }
 
 .ocrv-report-table tbody td {
@@ -164,7 +164,7 @@
 }
 
 .ocrv-report-table tr td {
-    transition: background 0.3 ease;
+    transition: background 0.1s ease;
 }
 
 .ocrv-report-table tr:hover td {
