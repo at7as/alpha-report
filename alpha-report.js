@@ -168,7 +168,7 @@ class OCRVreport {
                     let dof = true;
                     for (let key in format.v) {
                         if (result._ordinalCells.hasOwnProperty(r * this.values.length + v + format.v[key])) {
-                            val[key] = result._ordinalCells[r * this.values.length + v + format.v[key]]['FmtValue'];
+                            val[key] = result._ordinalCells[r * this.values.length + v + format.v[key]]['Value'];
                         } else {
                             dof = false;
                         }

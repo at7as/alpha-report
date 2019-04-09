@@ -62,7 +62,7 @@ function initReport() {
             {
                 format: {
                     v: { a: -1 },
-                    f: function (v) { return v.a > 100 },
+                    f: function (v) { return v.a > 1.0 },
                     s: 'color: rgb(150,50,50)'
                 }
             },
@@ -72,7 +72,7 @@ function initReport() {
             {
                 format: {
                     v: { a: -1 },
-                    f: function (v) { return v.a > 120 || v.a < 90 },
+                    f: function (v) { return v.a > 1.2 || v.a < 0.9 },
                     s: 'color: rgb(150,50,50)'
                 }
             },
@@ -82,7 +82,7 @@ function initReport() {
             {
                 format: {
                     v: { a: -1 },
-                    f: function (v) { return v.a > 120 || v.a < 100 },
+                    f: function (v) { return v.a > 1.2 || v.a < 1.0 },
                     s: 'color: rgb(150,50,50)'
                 }
             }
