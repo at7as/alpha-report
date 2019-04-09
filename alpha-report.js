@@ -291,14 +291,15 @@ class OCRVreport {
         if (t.tagName == 'TD') {
             if (t.cellIndex !== this.hoverindex) {
                 for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.remove('thead-hovered');
-                this.hovers = this.container.getElementsByClassName(this.id + '-thead-row-bottom-' + t.cellIndex);
-                console.log(this.hovers);
                 this.hoverindex = t.cellIndex;
+                this.hovers = this.container.getElementsByClassName(this.id + '-thead-row-bottom-' + this.hoverindex);
+                console.log(this.hovers);
                 console.log(this.hoverindex);
                 for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.add('thead-hovered');
             } else {
                 console.log(this.hovers);
                 console.log(this.hoverindex);
+                if (!this.hovers) this.hovers = this.container.getElementsByClassName(this.id + '-thead-row-bottom-' + this.hoverindex);
                 for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.add('thead-hovered');
             }
         }
