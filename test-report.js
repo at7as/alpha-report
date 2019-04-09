@@ -50,7 +50,7 @@ function initReport() {
         ],
         footer: [
             '* формируется на основе фактических данных показателей внутренних статистических отчетов ф.1-т(УТО-1), 1-т(ОАО "РЖД").',
-            'цветом выделяется в случаях:',
+            '<span style="color: rgb(200,50,50); font-weight: bold;">цветом выделяется в случаях:</span>',
             '- ССЧ больше 100%',
             '- ФЗП больше 120% или меньше 90%',
             '- СМЗП больше 120% или меньше 100%'
@@ -63,7 +63,7 @@ function initReport() {
                 format: {
                     v: { a: -1 },
                     f: function (v) { return v.a > 1.0; },
-                    s: 'color: rgb(150,50,50)'
+                    s: 'color: rgb(200,50,50); font-weight: bold;'
                 }
             },
             {},
@@ -73,7 +73,7 @@ function initReport() {
                 format: {
                     v: { a: -1 },
                     f: function (v) { return v.a > 1.2 || v.a < 0.9; },
-                    s: 'color: rgb(150,50,50)'
+                    s: 'color: rgb(200,50,50); font-weight: bold;'
                 }
             },
             {},
@@ -83,7 +83,7 @@ function initReport() {
                 format: {
                     v: { a: -1 },
                     f: function (v) { return v.a > 1.2 || v.a < 1.0; },
-                    s: 'color: rgb(150,50,50)'
+                    s: 'color: rgb(200,50,50); font-weight: bold;'
                 }
             }
         ],

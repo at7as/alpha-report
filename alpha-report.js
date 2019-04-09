@@ -85,14 +85,17 @@ class OCRVreport {
         if (this.h2) html += '<span class="ocrv-h2">' + this.h2 + '</span>';
         html += '</div>';
         html += '<div id="' + this.id + '-ocrv-report-container" class="ocrv-report-container"></div>';
+        /*
         html += '<div id="' + this.id + '-ocrv-report-footer" class="ocrv-report-footer">';
         for (let r = 0; r < this.footer.length; r++) {
             html += this.footer[r] + (r < this.footer.length - 1 ? '<br/>' : '');
         }
         html += '</div>';
+        */
         this.widget.setWidgetHtml(html);
         this.container = document.getElementById(this.id + '-ocrv-report-container');
-        this.container.style.height = (this.container.parentElement.getBoundingClientRect().height - document.getElementById(this.id + '-ocrv-report-footer').getBoundingClientRect().height - (this.container.getBoundingClientRect().top - this.container.parentElement.getBoundingClientRect().top)) + 'px';
+        //this.container.style.height = (this.container.parentElement.getBoundingClientRect().height - document.getElementById(this.id + '-ocrv-report-footer').getBoundingClientRect().height - (this.container.getBoundingClientRect().top - this.container.parentElement.getBoundingClientRect().top)) + 'px';
+        this.container.style.height = (this.container.parentElement.getBoundingClientRect().height - this.container.getBoundingClientRect().top + this.container.parentElement.getBoundingClientRect().top) + 'px';
         this.container.style.overflowY = 'scroll';
         document.getElementById(this.id + '-ocrv-report-unroll').onclick = this.unrollall;
         document.getElementById(this.id + '-ocrv-report-export').onclick = this.export;
@@ -204,7 +207,11 @@ class OCRVreport {
         this.html.style += '</style>';
     }
     applyTable() {
-        this.container.innerHTML = this.html.style + '<table id="' + this.id + '-ocrv-report-table" class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
+        let html = this.html.style + '<table id="' + this.id + '-ocrv-report-table" class="ocrv-report-table">' + this.html.head + this.html.body + '</table>';
+        html += '<div id="' + this.id + '-ocrv-report-footer" class="ocrv-report-footer">';
+        for (let r = 0; r < this.footer.length; r++) html += this.footer[r] + (r < this.footer.length - 1 ? '<br/>' : '');
+        html += '</div>';
+        this.container.innerHTML = html;
         let rows = this.container.getElementsByClassName('ocrv-row-click');
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
         this.unrollall();
