@@ -163,6 +163,10 @@
     position: fixed;
 }
 
+.ocrv-report-table tr td {
+    transition: background 0.3 ease;
+}
+
 .ocrv-report-table tr:hover td {
-    border-color: #000;
+    background: rgb(253, 236, 173);
 }
