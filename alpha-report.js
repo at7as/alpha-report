@@ -292,7 +292,9 @@ class OCRVreport {
             if (t.cellIndex !== this.hoverindex) {
                 for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.remove('thead-hovered');
                 this.hovers = this.container.getElementsByClassName(this.id + '-thead-row-bottom-' + t.cellIndex);
+                console.log(this.hovers);
                 this.hoverindex = t.cellIndex;
+                console.log(this.hoverindex);
                 for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.add('thead-hovered');
             } else {
                 for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.add('thead-hovered');

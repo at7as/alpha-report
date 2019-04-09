@@ -93,7 +93,7 @@
 }
 
 .ocrv-report-table .thead-bottom {
-    border-bottom-color: rgb(253, 236, 173);
+    border-bottom-color: rgb(169, 169, 169);
     border-bottom-width: 4px;
 }
 
@@ -142,6 +142,5 @@
 }
 
 .thead-hovered {
-    border-bottom-color: rgb(255, 0, 0) !important;
-    border-bottom-width: 4px;
+    border-bottom-color: rgb(253, 236, 173) !important;
 }
