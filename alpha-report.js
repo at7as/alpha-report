@@ -45,6 +45,7 @@ class OCRVreport {
         this.html = { head: '', body: '', style: '' };
         this.container = {};
         this.unrolled = true;
+        this.thhover = {};
         this.update = this.update.bind(this);
         this.beforeUpdate = this.beforeUpdate.bind(this);
         this.export = this.export.bind(this);
@@ -100,7 +101,7 @@ class OCRVreport {
         for (let v = 0; v < this.vars.length; v++) vars[this.vars[v]] = this.varParser[this.vars[v]]();
         this.html.head = '<thead id="' + this.id + '-ocrv-report-table-thead">';
         for (let tr = 0; tr < this.header.length; tr++) {
-            this.html.head += '<tr>';
+            this.html.head += '<tr' + (tr == this.header.length - 1 ? ' class="thead-row-bottom"' : '') + '>';
             for (let th = 0; th < this.header[tr].length; th++) {
                 let el = this.header[tr][th];
                 let elp = {
@@ -109,7 +110,7 @@ class OCRVreport {
                     n: this.temple(el.n, vars),
                     s: (el.hasOwnProperty('s') ? ' class="' + el.s + '"' : '')
                 };
-                this.html.head += '<th' + elp.s + elp.r + elp.c + '>' + elp.n + '</th>'
+                this.html.head += '<th' + (tr == this.header.length - 1 ? ' id="' + this.id + '-thead-row-bottom-' + th + '"' : '') + elp.s + elp.r + elp.c + '>' + elp.n + '</th>'
             }
             this.html.head += '</tr>';
         }
@@ -205,8 +206,6 @@ class OCRVreport {
         for (let r = 0; r < this.footer.length; r++) html += this.footer[r] + (r < this.footer.length - 1 ? '<br/>' : '');
         html += '</div>';
         this.container.innerHTML = html;
-        document.getElementById(this.id + '-ocrv-report-table').onmouseover = this.tbodyhover;
-        document.getElementById(this.id + '-ocrv-report-table').onmouseout = this.tbodyunhover;
         let rows = this.container.getElementsByClassName('ocrv-row-click');
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
         this.unrollall();
@@ -285,13 +284,17 @@ class OCRVreport {
         return t;
     }
     tbodyhover(e) {
-        console.log('hover', e);
-
+        let t = e.target;
+        if (t.tagName == 'TD') {
+            if (this.thhover != document.getElementById(this.id + '-thead-row-bottom-' + t.cellIndex));
+            this.thhover.classList.remove('thead-hovered');
+            this.thhover = document.getElementById(this.id + '-thead-row-bottom-' + t.cellIndex);
+            this.thhover.classList.add('thead-hovered');
+        }
     }
     tbodyunhover(e) {
-        console.log('unhover', e);
-    }
 
+    }
     export() {
         /*
         var xlsx = new BarsUp.xlsx.View();

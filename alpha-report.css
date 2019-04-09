@@ -140,3 +140,8 @@
 .ocrv-report-table tr:hover td {
     background: rgb(253, 236, 173);
 }
+
+.thead-hovered {
+    border-bottom-color: rgb(255, 0, 0);
+    border-bottom-width: 4px;
+}
