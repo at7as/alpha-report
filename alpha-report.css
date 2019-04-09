@@ -144,3 +144,8 @@
 .thead-hovered {
     border-bottom-color: rgb(253, 236, 173) !important;
 }
+
+.thead-row-bottom th {
+    padding-top: 0;
+    padding-bottom: 0;
+}
