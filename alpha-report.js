@@ -178,10 +178,10 @@ class OCRVreport {
         if (this.levels > 1) {
             for (let l = 0; l < this.levels; l++) {
                 this.html.style += (l == 0 ? '' : ' ') + '.ocrv-row-level-' + l + ' {background: rgb(';
-                this.html.style += Math.ceil(this.colors.first[0] + (this.colors.last[0] - this.colors.first[0]) * (l / (this.levels - 1))) + ', '
-                this.html.style += Math.ceil(this.colors.first[1] + (this.colors.last[1] - this.colors.first[1]) * (l / (this.levels - 1))) + ', '
-                this.html.style += Math.ceil(this.colors.first[2] + (this.colors.last[2] - this.colors.first[2]) * (l / (this.levels - 1)))
-                this.html.style += ')}' + (l == this.levels - 1 ? '' : ' ')
+                this.html.style += Math.ceil(this.colors.first[0] + (this.colors.last[0] - this.colors.first[0]) * (l / (this.levels - 1))) + ', ';
+                this.html.style += Math.ceil(this.colors.first[1] + (this.colors.last[1] - this.colors.first[1]) * (l / (this.levels - 1))) + ', ';
+                this.html.style += Math.ceil(this.colors.first[2] + (this.colors.last[2] - this.colors.first[2]) * (l / (this.levels - 1)));
+                this.html.style += ')}' + (l == this.levels - 1 ? '' : ' ');
             }
         } else {
             this.html.style += '.ocrv-row-level-0 {background: rgb(' + this.colors.first[0] + ', ' + this.colors.first[0] + ', ' + this.colors.first[0] + ')}';
