@@ -2,7 +2,7 @@
 function initReport() {
     let reportConfig = {
         widget: $widget,
-        sourceName: 'Месяц',
+        sourceName: 'Нарастающий итог',
         vars: ['month', 'year', 'prevyear'],
         h1: 'Среднесписочная численность, фонд заработной платы, среднемесячная заработная плата (вкл.067КВВ)',
         h2: '(фактические данные)*',
@@ -18,16 +18,16 @@ function initReport() {
                 { c: 4, n: 'Среднемесячная заработная плата, руб.' }
             ],
             [
-                { n: 'за <%month%> <%prevyear%> г.' },
-                { n: 'за <%month%> <%year%> г.' },
+                { n: 'за Январь - <%month%> <%prevyear%> г.' },
+                { n: 'за Январь - <%month%> <%year%> г.' },
                 { n: '% <%year%> г. к <%prevyear%> г.' },
                 { n: '+,- <%year%> г. к <%prevyear%> г.' },
-                { n: 'за <%month%> <%prevyear%> г.' },
-                { n: 'за <%month%> <%year%> г.' },
+                { n: 'за Январь - <%month%> <%prevyear%>г.' },
+                { n: 'за Январь - <%month%> <%year%> г.' },
                 { n: '% <%year%> г. к <%prevyear%> г.' },
                 { n: '+,- <%year%> г. к <%prevyear%> г.' },
-                { n: 'за <%month%> <%prevyear%>' },
-                { n: 'за <%month%> <%year%>' },
+                { n: 'за Январь - <%month%> <%prevyear%> г.' },
+                { n: 'за Январь - <%month%> <%year%> г.' },
                 { n: '% <%year%> г. к <%prevyear%> г.' },
                 { n: '+,- <%year%> г. к <%prevyear%> г.' }
             ],
