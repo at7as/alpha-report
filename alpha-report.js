@@ -83,7 +83,7 @@ class OCRVreport {
         this.source.model.query.update(true);
     }
     drawBlank() {
-        let html = '<div id="' + this.id + '-ocrv-report-control" class="ocrv-report-control"><div class="ocrv-report-control-left"><button id="' + this.id + '-ocrv-report-unroll"><i class="fa fa-angle-double-down"></i>&nbsp;Развернуть всё</button></div><div class="ocrv-report-control-right"><button id="' + this.id + '-ocrv-report-export" disabled><i class="fa fa-file-excel-o"></i>&nbsp;Экспорт</button><button id="' + this.id + '-ocrv-report-run"><i class="fa fa-bolt"></i>&nbsp;Сформировать</button></div></div>';
+        let html = '<div id="' + this.id + '-ocrv-report-control" class="ocrv-report-control"><div class="ocrv-report-control-left"><button id="' + this.id + '-ocrv-report-unroll" enabled><i class="fa fa-angle-double-down"></i>&nbsp;Развернуть всё</button></div><div class="ocrv-report-control-right"><button id="' + this.id + '-ocrv-report-export" disabled><i class="fa fa-file-excel-o"></i>&nbsp;Экспорт</button><button id="' + this.id + '-ocrv-report-run" enabled><i class="fa fa-bolt"></i>&nbsp;Сформировать</button></div></div>';
         html += '<div id="' + this.id + '-ocrv-report-header" class="ocrv-report-header">';
         html += '<span class="ocrv-h1">' + this.h1 + '</span>';
         if (this.h2) html += '<span class="ocrv-h2">' + this.h2 + '</span>';

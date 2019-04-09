@@ -1,6 +1,6 @@
 .ocrv-report-control {
     background: rgb(240, 243, 250);
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     height: 37px;
     padding: 4px;
     display: flex;
@@ -36,13 +36,13 @@
     transition: all 0.25s ease;
 }
 
-.ocrv-report-control button:hover {
+.ocrv-report-control button:hover:enabled {
     box-shadow: inset 0px -2px 5px 0px rgba(0, 0, 0, 0);
     color: #000;
     background: rgb(253, 236, 173);
 }
 
-.ocrv-report-control button:active {
+.ocrv-report-control button:active:enabled {
     box-shadow: inset 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
