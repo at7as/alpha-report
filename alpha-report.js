@@ -121,7 +121,7 @@ class OCRVreport {
         this.unrolled = true;
         let result = this.source.model.lastResult;
         let parents = [];
-        this.html.body = '<tbody>';
+        this.html.body = '<tbody id="' + this.id + '-ocrv-report-table-tbody">';
         for (let r = 0; r < result.rows.length; r++) {
             let row = result.rows[r];
             parents[parseInt(row.members[0]['LNum'])] = r;
@@ -206,6 +206,8 @@ class OCRVreport {
         for (let r = 0; r < this.footer.length; r++) html += this.footer[r] + (r < this.footer.length - 1 ? '<br/>' : '');
         html += '</div>';
         this.container.innerHTML = html;
+        document.getElementById(this.id + '-ocrv-report-table-tbody').onmouseover = this.tbodyhover;
+        document.getElementById(this.id + '-ocrv-report-table-tbody').onmouseout = this.tbodyunhover;
         let rows = this.container.getElementsByClassName('ocrv-row-click');
         for (let r = 0; r < rows.length; r++) rows[r].onclick = this.unroll;
         this.unrollall();
