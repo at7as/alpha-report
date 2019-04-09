@@ -175,7 +175,9 @@ class OCRVreport {
                         }
                     }
                     console.log(val);
+                    console.log(dof);
                     if (dof) {
+                        console.log(format.f(val))
                         if (format.f(val)) {
                             this.html.body += ' style="' + format.s + '"';
                             console.log(' style="' + format.s + '"');
