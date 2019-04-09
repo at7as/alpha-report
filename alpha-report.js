@@ -108,7 +108,7 @@ class OCRVreport {
                     r: (el.hasOwnProperty('r') ? ' rowspan="' + el.r + '"' : ''),
                     c: (el.hasOwnProperty('c') ? ' colspan="' + el.c + '"' : ''),
                     n: this.temple(el.n, vars),
-                    s: (el.hasOwnProperty('s') ? ' class="' + el.s + '"' : '')
+                    s: (el.hasOwnProperty('s') ? ' class="' + el.s + (tr == this.header.length - 1 ? ' ' + this.id + '-thead-row-bottom-' + th : '') + '"' : (tr == this.header.length - 1 ? ' class="' + this.id + '-thead-row-bottom-' + th + '"' : ''))
                 };
                 this.html.head += '<th' + (tr == this.header.length - 1 ? ' id="' + this.id + '-thead-row-bottom-' + th + '"' : '') + elp.s + elp.r + elp.c + '>' + elp.n + '</th>'
             }
@@ -286,10 +286,13 @@ class OCRVreport {
     tbodyhover(e) {
         let t = e.target;
         if (t.tagName == 'TD') {
+            console.log(this.container.getElementsByClassName(this.id + '-thead-row-bottom-' + t.cellIndex));
+            /*
             if (this.thhover != document.getElementById(this.id + '-thead-row-bottom-' + t.cellIndex));
             this.thhover.classList.remove('thead-hovered');
             this.thhover = document.getElementById(this.id + '-thead-row-bottom-' + t.cellIndex);
             this.thhover.classList.add('thead-hovered');
+            */
         }
     }
     tbodyunhover(e) {
