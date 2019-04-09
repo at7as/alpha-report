@@ -306,6 +306,7 @@ class OCRVreport {
     tbodyunhover(e) {
         this.hovers = this.container.querySelectorAll('.thead-row-bottom th');
         for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.remove('thead-hovered');
+        this.hovers = [];
     }
     export() {
         /*
