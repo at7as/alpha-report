@@ -45,7 +45,8 @@ class OCRVreport {
         this.html = { head: '', body: '', style: '' };
         this.container = {};
         this.unrolled = true;
-        this.thhover = {};
+        this.hoverindex = -1;
+        this.hovers = [];
         this.update = this.update.bind(this);
         this.beforeUpdate = this.beforeUpdate.bind(this);
         this.export = this.export.bind(this);
@@ -288,17 +289,19 @@ class OCRVreport {
     tbodyhover(e) {
         let t = e.target;
         if (t.tagName == 'TD') {
-            console.log(this.container.getElementsByClassName(this.id + '-thead-row-bottom-' + t.cellIndex));
-            /*
-            if (this.thhover != document.getElementById(this.id + '-thead-row-bottom-' + t.cellIndex));
-            this.thhover.classList.remove('thead-hovered');
-            this.thhover = document.getElementById(this.id + '-thead-row-bottom-' + t.cellIndex);
-            this.thhover.classList.add('thead-hovered');
-            */
+            if (t.cellIndex !== this.hoverindex) {
+                for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.remove('thead-hovered');
+                this.hovers = this.container.getElementsByClassName(this.id + '-thead-row-bottom-' + t.cellIndex);
+                this.hoverindex = t.cellIndex;
+                for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.add('thead-hovered');
+            } else {
+                for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.add('thead-hovered');
+            }
         }
     }
     tbodyunhover(e) {
-
+        this.hovers = this.container.querySelectorAll('.thead-row-bottom th');
+        for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.remove('thead-hovered');
     }
     export() {
         /*
