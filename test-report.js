@@ -55,7 +55,38 @@ function initReport() {
             '- ФЗП больше 120% или меньше 90%',
             '- СМЗП больше 120% или меньше 100%'
         ],
-        values: 12,
+        values: [
+            {},
+            {},
+            {},
+            {
+                format: {
+                    v: { a: -1 },
+                    f: function (v) { return v.a > 100 },
+                    s: 'color: rgb(150,50,50)'
+                }
+            },
+            {},
+            {},
+            {},
+            {
+                format: {
+                    v: { a: -1 },
+                    f: function (v) { return v.a > 120 || v.a < 90 },
+                    s: 'color: rgb(150,50,50)'
+                }
+            },
+            {},
+            {},
+            {},
+            {
+                format: {
+                    v: { a: -1 },
+                    f: function (v) { return v.a > 120 || v.a < 100 },
+                    s: 'color: rgb(150,50,50)'
+                }
+            }
+        ],
         numerable: true,
         colors: {
             first: [191, 197, 206],

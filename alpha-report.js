@@ -122,6 +122,7 @@ class OCRVreport {
         this.levels = 0;
         this.unrolled = true;
         let result = this.source.model.lastResult;
+        console.log(result);
         let parents = [];
         this.html.body = '<tbody>';
         for (let r = 0; r < result.rows.length; r++) {
@@ -153,17 +154,34 @@ class OCRVreport {
             if (this.numerable) this.html.body += '<td class="ocrv-item-numpp">' + (r + 1) + '</td>';
             for (let d = 0; d < row.members.length; d++) {
                 this.html.body += '<td class="ocrv-item-caption">&nbsp;';
-                //this.html.body += '<td class="ocrv-item-level-' + row.members[d]['LNum'] + '">&nbsp;';
                 for (let b = 0; b < parseInt(row.members[0]['LNum']); b++) {
                     this.html.body += '<span class="ocrv-item-bull">&bull;&nbsp;</span>';
                 }
                 this.html.body += row.members[d]['Caption'];
                 this.html.body += '</td>';
             }
-            for (let v = 0; v < this.values; v++) {
-                this.html.body += '<td class="ocrv-item-value">';
-                if (result._ordinalCells.hasOwnProperty(r * this.values + v)) {
-                    this.html.body += result._ordinalCells[r * this.values + v]['FmtValue'];
+            for (let v = 0; v < this.values.length; v++) {
+                this.html.body += '<td class="ocrv-item-value"';
+                if (this.values[v].hasOwnProperty('format')) {
+                    let format = this.values[v].format;
+                    let val = {};
+                    let dof = true;
+                    for (let key in format.v) {
+                        if (result._ordinalCells.hasOwnProperty(r * this.values.length + v + format.v[key])) {
+                            val[key] = result._ordinalCells[r * this.values.length + v + format.v[key]]['FmtValue'];
+                        } else {
+                            dof = false;
+                        }
+                    }
+                    if (dof) {
+                        if (format.f(val)) {
+                            this.html.body += ' style="' + format.s + '"';
+                        }
+                    }
+                }
+                this.html.body += '>';
+                if (result._ordinalCells.hasOwnProperty(r * this.values.length + v)) {
+                    this.html.body += result._ordinalCells[r * this.values.length + v]['FmtValue'];
                 } else {
                     this.html.body += '&nbsp;';
                 }
@@ -287,12 +305,3 @@ class OCRVreport {
         */
     }
 };
-
-/*
-excel
-
-
-ВЫДЕЛЕНИЕ ПРИ НАВЕДЕНИИ!!!
-
-
-*/
