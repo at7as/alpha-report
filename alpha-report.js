@@ -296,12 +296,12 @@ class OCRVreport {
                 console.log(this.hovers);
                 console.log(this.hoverindex);
                 for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.add('thead-hovered');
-            } else {
+            } /*else {
                 console.log(this.hovers);
                 console.log(this.hoverindex);
                 if (!this.hovers) this.hovers = this.container.getElementsByClassName(this.id + '-thead-row-bottom-' + this.hoverindex);
                 for (let th = 0; th < this.hovers.length; th++) this.hovers[th].classList.add('thead-hovered');
-            }
+            }*/
         }
     }
     tbodyunhover(e) {
