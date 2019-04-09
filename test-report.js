@@ -32,20 +32,20 @@ function initReport() {
                 { n: '+, - т.г. к пр.г.' }
             ],
             [
-                { n: '&nbsp;' },
-                { n: '1' },
-                { n: '2' },
-                { n: '3' },
-                { n: '4' },
-                { n: '5' },
-                { n: '6' },
-                { n: '7' },
-                { n: '8' },
-                { n: '9' },
-                { n: '10' },
-                { n: '11' },
-                { n: '12' },
-                { n: '13' }
+                { n: '&nbsp;', s: 'thead-bottom thead-small' },
+                { n: '1', s: 'thead-bottom thead-small' },
+                { n: '2', s: 'thead-bottom thead-small' },
+                { n: '3', s: 'thead-bottom thead-small' },
+                { n: '4', s: 'thead-bottom thead-small' },
+                { n: '5', s: 'thead-bottom thead-small' },
+                { n: '6', s: 'thead-bottom thead-small' },
+                { n: '7', s: 'thead-bottom thead-small' },
+                { n: '8', s: 'thead-bottom thead-small' },
+                { n: '9', s: 'thead-bottom thead-small' },
+                { n: '10', s: 'thead-bottom thead-small' },
+                { n: '11', s: 'thead-bottom thead-small' },
+                { n: '12', s: 'thead-bottom thead-small' },
+                { n: '13', s: 'thead-bottom thead-small' }
             ]
         ],
         footer: [

@@ -87,15 +87,16 @@
     padding: 3px;
     font-weight: normal;
     font-size: 14px;
-    border: 1px solid rgb(242, 242, 242);
-}
-
-.ocrv-report-table .thead-top {
-    border-top-color: rgb(253, 236, 173);
+    border: 1px solid rgba(242, 242, 242, 0.33);
 }
 
 .ocrv-report-table .thead-bottom {
     border-bottom-color: rgb(253, 236, 173);
+    border-bottom-width: 4px;
+}
+
+.ocrv-report-table .thead-small {
+    font-size: 11px;
 }
 
 .ocrv-report-table tbody td {
