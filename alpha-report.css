@@ -104,8 +104,19 @@
     /*padding: 3px;*/
 }
 
-.ocrv-row-value {
+.ocrv-item-numpp {
+    padding: 3px;
+}
+
+.ocrv-item-value {
     text-align: right;
+    padding: 3px;
+}
+
+.ocrv-item-level-0, .ocrv-item-level-1, .ocrv-item-level-2, .ocrv-item-level-3, .ocrv-item-level-4, .ocrv-item-level-5, .ocrv-item-level-6, .ocrv-item-level-7 {
+    padding-right: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 .ocrv-item-level-0 {
@@ -150,4 +161,8 @@
 
 .ocrv-report-head-clone {
     position: fixed;
+}
+
+.ocrv-report-table tr:hover td {
+    border-color: #000;
 }

@@ -149,14 +149,14 @@ class OCRVreport {
             }
             this.html.body += '>';
             this.levels = Math.max(parseInt(row.members[0]['LNum']), this.levels);
-            if (this.numerable) this.html.body += '<td>' + (r + 1) + '</td>';
+            if (this.numerable) this.html.body += '<td class="ocrv-item-numpp">' + (r + 1) + '</td>';
             for (let d = 0; d < row.members.length; d++) {
                 this.html.body += '<td class="ocrv-item-level-' + row.members[d]['LNum'] + '">';
                 this.html.body += row.members[d]['Caption'];
                 this.html.body += '</td>';
             }
             for (let v = 0; v < this.values; v++) {
-                this.html.body += '<td class="ocrv-row-value">';
+                this.html.body += '<td class="ocrv-item-value">';
                 if (result._ordinalCells.hasOwnProperty(r * this.values + v)) {
                     this.html.body += result._ordinalCells[r * this.values + v]['FmtValue'];
                 } else {
@@ -285,4 +285,9 @@ class OCRVreport {
 
 /*
 excel
+
+
+ВЫДЕЛЕНИЕ ПРИ НАВЕДЕНИИ!!!
+
+
 */
