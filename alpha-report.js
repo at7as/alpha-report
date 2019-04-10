@@ -29,7 +29,7 @@ class OCRVtabpanel {
         //this.period.setDataSourceId('Отчетный период');
         //this.period.updateWidget();
         //console.log(this.period);
-        this.period.getDataSource(t.dataset.period);
+        console.log(this.period.getDataSource(t.dataset.period));
     }
 }
 
