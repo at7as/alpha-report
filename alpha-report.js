@@ -26,6 +26,7 @@ class OCRVtabpanel {
         }
         if (t.tagName != 'A') return;
         this.period.bindDataSource(t.dataset.period);
+        this.period.updateWidget();
         // setDataSourceId;
     }
 }
