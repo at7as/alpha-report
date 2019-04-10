@@ -26,10 +26,10 @@ class OCRVtabpanel {
         }
         if (t.tagName != 'A') return;
         //this.period.bindDataSource(t.dataset.period);
-        this.period.setDataSourceId('Отчетный период');
-        this.period.updateWidget();
-        console.log(this.period);
-        
+        //this.period.setDataSourceId('Отчетный период');
+        //this.period.updateWidget();
+        //console.log(this.period);
+        this.period.getDataSource(t.dataset.period);
     }
 }
 
