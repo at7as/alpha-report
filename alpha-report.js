@@ -19,8 +19,8 @@ class OCRVtabpanel {
         let t = e.target;
         console.log(t);
         if (t.tagName != 'A') {
-            for (let p; p < e.path.length; p++) {
-                if (e.path[p].tagName = 'A') {
+            for (let p = 0; p < e.path.length; p++) {
+                if (e.path[p].tagName == 'A') {
                     t = e.path[p];
                     break;
                 }
