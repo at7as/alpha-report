@@ -15,7 +15,7 @@ class OCRVtabpanel {
         }
     }
     click(e) {
-        console.log(e.target.dataset);
+        console.log(e);
     }
 }
 

@@ -2,7 +2,7 @@
 function initReport() {
     let panelConfig = {
         widget: $widget,
-        period: $dashboard.getWidget('w_es3iuaoypo5g4k0cjm3pet'),
+        period: $dashboard.getWidget('w_wn1t8enpsd4hg4n1qwmmf'),
         map: {
             'Месяц': 'Отчетный период',
             'Нарастающий итог': 'Отчетный период',
@@ -10,7 +10,7 @@ function initReport() {
             'Полугодие': 'Отчетный период полугодие'
         }
     }
-    let panel = new OCRVreport(panelConfig);
+    let panel = new OCRVtabpanel(panelConfig);
     panel.init();
 }
 function waitReport() { if (typeof OCRVreport !== 'undefined') { initReport(); } else { setTimeout(function () { waitReport(); }, 1000); } }
