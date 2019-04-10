@@ -30,12 +30,6 @@ class OCRVtabpanel {
             if (this.dashboard.dataSources[key].title == t.dataset.period) this.period.bindDataSource(key);
         }
         this.period.updateWidget();
-        //this.period.bindDataSource(t.dataset.period);
-        //this.period.setDataSourceId('Отчетный период');
-        //this.period.updateWidget();
-        //console.log(this.period);
-        console.log(this.period.getDataSource(t.dataset.period));
-        console.log(this.dashboard);
     }
 }
 
