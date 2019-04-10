@@ -4,6 +4,7 @@ class OCRVtabpanel {
         this.widget = config.widget;
         this.id = config.widget.id;
         this.period = config.period;
+        this.dashboard = config.dashboard;
         this.map = config.map;
         this.click = this.click.bind(this);
     }
@@ -30,7 +31,7 @@ class OCRVtabpanel {
         //this.period.updateWidget();
         //console.log(this.period);
         console.log(this.period.getDataSource(t.dataset.period));
-        console.log($dashboard);
+        console.log(this.dashboard);
     }
 }
 

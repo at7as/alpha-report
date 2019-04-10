@@ -3,6 +3,7 @@ function initReport() {
     let panelConfig = {
         widget: $widget,
         period: $dashboard.getWidget('w_wn1t8enpsd4hg4n1qwmmf'),
+        dashboard: $dashboard,
         map: {
             'Месяц': 'Отчетный период',
             'Нарастающий итог': 'Отчетный период',
