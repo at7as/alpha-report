@@ -15,7 +15,18 @@ class OCRVtabpanel {
         }
     }
     click(e) {
-        console.log(e);
+        let t = e.target;
+        if (t.tagName != 'A') {
+            for (let p; p < e.path.length; p++) {
+                if (e.path[p].tagName = 'A') {
+                    t = e.path[p];
+                    break;
+                }
+            }
+        }
+        if (t.tagName != 'A') return;
+        this.period.bindDataSource(t.dataset.period);
+        // setDataSourceId;
     }
 }
 
