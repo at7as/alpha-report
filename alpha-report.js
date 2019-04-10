@@ -15,6 +15,7 @@ class OCRVtabpanel {
         }
     }
     click(e) {
+        console.log(e);
         let t = e.target;
         console.log(t);
         if (t.tagName != 'A') {
@@ -33,6 +34,7 @@ class OCRVtabpanel {
         //this.period.updateWidget();
         //console.log(this.period);
         console.log(this.period.getDataSource(t.dataset.period));
+        console.log($dashboard);
     }
 }
 
