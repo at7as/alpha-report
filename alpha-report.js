@@ -15,9 +15,7 @@ class OCRVtabpanel {
         }
     }
     click(e) {
-        console.log(e);
         let t = e.target;
-        console.log(t);
         if (t.tagName != 'A') {
             for (let p = 0; p < e.path.length; p++) {
                 if (e.path[p].tagName == 'A') {
@@ -26,9 +24,7 @@ class OCRVtabpanel {
                 }
             }
         }
-        console.log(t);
         if (t.tagName != 'A') return;
-        console.log(t);
         //this.period.bindDataSource(t.dataset.period);
         //this.period.setDataSourceId('Отчетный период');
         //this.period.updateWidget();
