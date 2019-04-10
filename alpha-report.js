@@ -9,7 +9,7 @@ class OCRVtabpanel {
         this.click = this.click.bind(this);
     }
     init() {
-        let root = $widget.getRoot();
+        let root = this.widget.getRoot();
         for (let i = 0; i < root.config.items.length; i++) {
             let item = root.config.items[i];
             if (item.hasOwnProperty('vmData') && item.vmData.hasOwnProperty('title') && item.vmData.title == 'Параметры') {
