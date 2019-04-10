@@ -1,4 +1,24 @@
 
+class OCRVtabpanel {
+    constructor(config) {
+        this.widget = config.widget;
+        this.id = config.widget.id;
+        this.period = config.period;
+        this.map = config.map;
+        this.click = this.click.bind(this);
+    }
+    init() {
+        let el = document.getElementById(this.id).querySelectorAll('a.x-tab-default');
+        for (let e = 0; e < el.length; e++) {
+            el[e].dataset.period = this.map[el[e].getElementsByClassName('x-tab-inner')[0].innerText];
+            el[e].onclick = this.click;
+        }
+    }
+    click(e) {
+        console.log(e.target.dataset);
+    }
+}
+
 class OCRVparser {
     constructor(config) {
         this.source = config.source;
