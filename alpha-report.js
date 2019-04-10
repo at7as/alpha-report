@@ -53,6 +53,14 @@ class OCRVparser {
         let value = this.getValue('Отчётный период');
         return value ? value[3].substr(0, value[3].length - 5) : '';
     }
+    quarter() {
+        let value = this.getValue('Отчётный период');
+        return value ? value[3].substr(0, value[3].length - 5) : '';
+    }
+    half(){
+        let value = this.getValue('Отчётный период');
+        return value ? value[3] : '';
+    }
     year() {
         let value = this.getValue('Отчётный период');
         return value ? value[2] : '';
