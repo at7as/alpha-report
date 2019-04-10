@@ -3,12 +3,24 @@ class OCRVtabpanel {
     constructor(config) {
         this.widget = config.widget;
         this.id = config.widget.id;
-        this.period = config.period;
         this.dashboard = config.dashboard;
         this.map = config.map;
+        this.period = {};
         this.click = this.click.bind(this);
     }
     init() {
+        let root = $widget.getRoot();
+        for (let i = 0; i < root.config.items.length; i++) {
+            let item = root.config.items[i];
+            if (item.hasOwnProperty('vmData') && item.vmData.hasOwnProperty('title') && item.vmData.title == 'Параметры') {
+                for (let ii = 0; ii < item.items.length; ii++) {
+                    let iitem = item.items[ii];
+                    if (iitem.hasOwnProperty('vmData') && iitem.vmData.hasOwnProperty('title') && iitem.vmData.title == 'Отчетный период') {
+                        this.period = this.dashboard.getWidget(iitem.itemId);
+                    }
+                }
+            }
+        }
         let el = document.getElementById(this.id).querySelectorAll('a.x-tab-default');
         for (let e = 0; e < el.length; e++) {
             el[e].dataset.period = this.map[el[e].getElementsByClassName('x-tab-inner')[0].innerText];
