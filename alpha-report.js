@@ -57,7 +57,7 @@ class OCRVparser {
         let value = this.getValue('Отчётный период');
         return value ? value[3].substr(0, value[3].length - 5) : '';
     }
-    half(){
+    half() {
         let value = this.getValue('Отчётный период');
         return value ? value[3] : '';
     }
@@ -133,7 +133,10 @@ class OCRVreport {
         this.widget.setLoading(false);
     }
     run() {
-        if (this.varParser.getValue('Отчётный период').length < 4) return;
+        if (this.varParser.getValue('Отчётный период').length < 4) {
+            console.log(this);
+            return;
+        }
         this.source.model.query.update(true);
     }
     drawBlank() {
